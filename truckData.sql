@@ -52,15 +52,15 @@ SET autocommit=1;
 # Dumping data for table 'accounts'
 #
 
-INSERT INTO `accounts` (`accountNumber`, `email`, `password`, `type`) VALUES ('1', 'docurneen0@flavors.me', 'If9KdB', 'C');
-INSERT INTO `accounts` (`accountNumber`, `email`, `password`, `type`) VALUES ('2', 'mlemon1@fotki.com', 'fywCN7CmD8H', 'C');
-INSERT INTO `accounts` (`accountNumber`, `email`, `password`, `type`) VALUES ('3', 'vsteen2@buzzfeed.com', 'YVpSVom8', 'C');
-INSERT INTO `accounts` (`accountNumber`, `email`, `password`, `type`) VALUES ('4', 'wang@vt.edu', 'FjqSBoIAkEi', 'T');
-INSERT INTO `accounts` (`accountNumber`, `email`, `password`, `type`) VALUES ('5', 'kyesinin4@microsoft.com', 'MyuzPEP', 'T');
-INSERT INTO `accounts` (`accountNumber`, `email`, `password`, `type`) VALUES ('6', 'hbarmby5@jiathis.com', 'GoGe6i', 'T');
-INSERT INTO `accounts` (`accountNumber`, `email`, `password`, `type`) VALUES ('7', 'pbalthasar6@ox.ac.uk', 'aeDAhDO2', 'A');
-INSERT INTO `accounts` (`accountNumber`, `email`, `password`, `type`) VALUES ('8', 'abeton7@accuweather.com', 'eip9vsfWD', 'A');
-INSERT INTO `accounts` (`accountNumber`, `email`, `password`, `type`) VALUES ('9', 'athickpenny8@xrea.com', 'QENnAGJrkR0', 'A');
+INSERT INTO `accounts` (`accountNumber`, `email`, `password`, `type`) VALUES ('1', 'wangEnt@wang.com', 'yamero', 'C');
+INSERT INTO `accounts` (`accountNumber`, `email`, `password`, `type`) VALUES ('2', 'client@weyland.com', 'client', 'C');
+INSERT INTO `accounts` (`accountNumber`, `email`, `password`, `type`) VALUES ('3', 'knight@ares.com', 'client', 'C');
+INSERT INTO `accounts` (`accountNumber`, `email`, `password`, `type`) VALUES ('4', 'wang@vt.edu', 'trucker', 'T');
+INSERT INTO `accounts` (`accountNumber`, `email`, `password`, `type`) VALUES ('5', 'kyesinin4@microsoft.com', 'trucker', 'T');
+INSERT INTO `accounts` (`accountNumber`, `email`, `password`, `type`) VALUES ('6', 'hbarmby5@jiathis.com', 'trucker', 'T');
+INSERT INTO `accounts` (`accountNumber`, `email`, `password`, `type`) VALUES ('7', 'root@root.com', 'admin', 'A');
+INSERT INTO `accounts` (`accountNumber`, `email`, `password`, `type`) VALUES ('8', 'admin@ri.com', 'admin', 'A');
+INSERT INTO `accounts` (`accountNumber`, `email`, `password`, `type`) VALUES ('9', 'athickpenny8@xrea.com', 'admin', 'A');
 # 9 records
 
 #
@@ -100,7 +100,7 @@ CREATE TABLE `client` (
   `clientName` VARCHAR(255), 
   `baseLocation` VARCHAR(255), 
   `userName` VARCHAR(255), 
-  `accountNumber` VARCHAR(255), 
+  `accountNumber` DOUBLE NULL, 
   PRIMARY KEY (`clientID`)
 ) ENGINE=myisam DEFAULT CHARSET=utf8;
 
@@ -110,9 +110,9 @@ SET autocommit=1;
 # Dumping data for table 'client'
 #
 
-INSERT INTO `client` (`clientID`, `clientName`, `baseLocation`, `userName`, `accountNumber`) VALUES ('1', 'Wang Enterprises', 'Dongxiang', 'dcyseley0', '1');
-INSERT INTO `client` (`clientID`, `clientName`, `baseLocation`, `userName`, `accountNumber`) VALUES ('2', 'Weyland-Yutani', 'Salawu', 'cgrim1', '2');
-INSERT INTO `client` (`clientID`, `clientName`, `baseLocation`, `userName`, `accountNumber`) VALUES ('3', 'Ares Macrotechnology', 'New York', 'mvellacott2', '3');
+INSERT INTO `client` (`clientID`, `clientName`, `baseLocation`, `userName`, `accountNumber`) VALUES ('1', 'Wang Enterprises', 'Dongxiang', 'wangEnt', 1);
+INSERT INTO `client` (`clientID`, `clientName`, `baseLocation`, `userName`, `accountNumber`) VALUES ('2', 'Weyland-Yutani', 'Salawu', 'Yutani', 2);
+INSERT INTO `client` (`clientID`, `clientName`, `baseLocation`, `userName`, `accountNumber`) VALUES ('3', 'Ares Macrotechnology', 'New York', 'Ares', 3);
 # 3 records
 
 #
@@ -266,7 +266,6 @@ CREATE TABLE `trucker` (
   `lastName` VARCHAR(255), 
   `city` VARCHAR(255), 
   `state` VARCHAR(255), 
-  `password` VARCHAR(255), 
   `accountNumber` DOUBLE NULL, 
   PRIMARY KEY (`CDL`)
 ) ENGINE=myisam DEFAULT CHARSET=utf8;
@@ -277,8 +276,8 @@ SET autocommit=1;
 # Dumping data for table 'trucker'
 #
 
-INSERT INTO `trucker` (`CDL`, `firstName`, `lastName`, `city`, `state`, `password`, `accountNumber`) VALUES ('1234-22-0987', 'Alan', 'Wang', 'Blacksburg', 'Virginia', 'yamero', 4);
-INSERT INTO `trucker` (`CDL`, `firstName`, `lastName`, `city`, `state`, `password`, `accountNumber`) VALUES ('5402-99-5134', 'Karyn', 'Whistan', 'Memphis', 'Tennessee', 'JZ9g0Q', 5);
-INSERT INTO `trucker` (`CDL`, `firstName`, `lastName`, `city`, `state`, `password`, `accountNumber`) VALUES ('5555-55-5555', 'Lynea', 'Minards', 'Washington', 'District of Columbia', 'ADL1wa2oT', 6);
+INSERT INTO `trucker` (`CDL`, `firstName`, `lastName`, `city`, `state`, `accountNumber`) VALUES ('1234-22-0987', 'Alan', 'Wang', 'Blacksburg', 'Virginia', 4);
+INSERT INTO `trucker` (`CDL`, `firstName`, `lastName`, `city`, `state`, `accountNumber`) VALUES ('5402-99-5134', 'Karyn', 'Whistan', 'Memphis', 'Tennessee', 5);
+INSERT INTO `trucker` (`CDL`, `firstName`, `lastName`, `city`, `state`, `accountNumber`) VALUES ('5555-55-5555', 'Lynea', 'Minards', 'Washington', 'District of Columbia', 6);
 # 3 records
 
