@@ -39,7 +39,7 @@ USE `truckData`;
 DROP TABLE IF EXISTS `accounts`;
 
 CREATE TABLE `accounts` (
-  `accountNumber` VARCHAR(255) NOT NULL, 
+  `accountNumber` INT NOT NULL AUTO_INCREMENT, 
   `email` VARCHAR(255), 
   `password` VARCHAR(255), 
   `type` VARCHAR(255), 
@@ -70,7 +70,7 @@ INSERT INTO `accounts` (`accountNumber`, `email`, `password`, `type`) VALUES ('9
 DROP TABLE IF EXISTS `admin`;
 
 CREATE TABLE `admin` (
-  `accountNumber` VARCHAR(255) NOT NULL, 
+  `accountNumber` INT NOT NULL AUTO_INCREMENT, 
   `employerID` VARCHAR(255), 
   `firstName` VARCHAR(255), 
   `lastName` VARCHAR(255), 
@@ -96,7 +96,7 @@ INSERT INTO `admin` (`accountNumber`, `employerID`, `firstName`, `lastName`) VAL
 DROP TABLE IF EXISTS `client`;
 
 CREATE TABLE `client` (
-  `clientID` VARCHAR(255) NOT NULL, 
+  `clientID` INT NOT NULL AUTO_INCREMENT, 
   `clientName` VARCHAR(255), 
   `baseLocation` VARCHAR(255), 
   `userName` VARCHAR(255), 
@@ -122,7 +122,7 @@ INSERT INTO `client` (`clientID`, `clientName`, `baseLocation`, `userName`, `acc
 DROP TABLE IF EXISTS `fufillments`;
 
 CREATE TABLE `fufillments` (
-  `listingID` VARCHAR(255) NOT NULL, 
+  `listingID` INT NOT NULL AUTO_INCREMENT, 
   `clientID` DOUBLE NULL, 
   `clientName` VARCHAR(255), 
   `origin` VARCHAR(255), 
@@ -158,7 +158,7 @@ INSERT INTO `fufillments` (`listingID`, `clientID`, `clientName`, `origin`, `des
 DROP TABLE IF EXISTS `inTransit`;
 
 CREATE TABLE `inTransit` (
-  `listingID` VARCHAR(255) NOT NULL, 
+  `listingID` INT NOT NULL AUTO_INCREMENT, 
   `clientID` DOUBLE NULL, 
   `clientName` VARCHAR(255), 
   `origin` VARCHAR(255), 
@@ -193,7 +193,7 @@ INSERT INTO `inTransit` (`listingID`, `clientID`, `clientName`, `origin`, `desti
 DROP TABLE IF EXISTS `listing`;
 
 CREATE TABLE `listing` (
-  `listingID` VARCHAR(255), 
+  `listingID` INT NOT NULL AUTO_INCREMENT, 
   `clientID` DOUBLE NULL, 
   `clientName` VARCHAR(255), 
   `origin` VARCHAR(255), 
@@ -261,7 +261,7 @@ INSERT INTO `needApproval` (`ID`, `listingID`, `clientID`, `clientName`, `origin
 DROP TABLE IF EXISTS `trucker`;
 
 CREATE TABLE `trucker` (
-  `CDL` VARCHAR(255) NOT NULL, 
+  `CDL` INT NOT NULL, 
   `firstName` VARCHAR(255), 
   `lastName` VARCHAR(255), 
   `city` VARCHAR(255), 
