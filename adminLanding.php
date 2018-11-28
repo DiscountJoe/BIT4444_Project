@@ -6,10 +6,9 @@
 <body>
   <nav>
     <img src="reynholm.jpg" height="5%" width="5%">
-    <a href="landing.php">Home</a> |
- <a href="timetable.php">Moderation</a> |
- <a href="record.php">Your Record</a> |
- <a href="advising.php">Advising</a> |
+    <a href="adminlanding.php">Home</a> |
+ <a href="moderation.php">Moderation</a> |
+
 </nav>
   <?php
     //resume the session variable on this page
