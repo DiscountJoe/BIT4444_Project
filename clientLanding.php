@@ -14,6 +14,8 @@
   <?php
     //resume the session variable on this page
     session_start();
+    $clientID = $_SESSION["clientID"];
+    $clientName = $_SESSION["clientName"];
     $timeString = "";
     $currentTime = date("a");
     if ($currentTime == "am") {
@@ -22,7 +24,7 @@
       $timeString = "afternoon";
     }
 
-    echo "<p>Good ".$timeString."!</p>";
+    echo "<p>Good ".$timeString." ".$clientName."!</p>";
 
    ?>
    <p><a href="logout.php">Click here to log out</a></p>

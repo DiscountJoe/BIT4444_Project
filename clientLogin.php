@@ -2,6 +2,8 @@
   $email="";
   $password="";
   $remember="no";
+  $clientID = "";
+  $clientName = "";
   $error = false;
   $loginOK = null;
 
@@ -9,6 +11,7 @@
     if(isset($_POST["email"])) $email=$_POST["email"];
     if(isset($_POST["password"])) $password=$_POST["password"];
     if(isset($_POST["remember"])) $remember=$_POST["remember"];
+  //  if(isset($_POST["clientID"])) $remember=$_POST["clientID"];
 
     //echo ($email.".".$password.".".$remember);
     if(empty($email) || empty($password)) {
@@ -16,14 +19,14 @@
     }
 
     //set cookies for remembering the user name
-    if(!empty($email) && $remember=="yes"){
+   if(!empty($email) && $remember=="yes"){
       setcookie("email", $email, time()+60*60*24, "/");
     }
 
     if(!$error){
       //check email and password with the database record
       require_once("db.php");
-      $sql = "select password from client where email='$email'";
+      $sql = "select password, clientID, clientName from client where email='$email'";
       $result = $mydb->query($sql);
 
       $row=mysqli_fetch_array($result);
@@ -42,7 +45,9 @@
         //set session variable to remember the email
         session_start();
         $_SESSION["email"] = $email;
-        setcookie("password", $password, time()+86400*3);
+        $_SESSION["clientID"] = $row["clientID"];
+        $_SESSION["clientName"] = $row["clientName"];
+       setcookie("password", $password, time()+86400*3);
 
         Header("Location:clientLanding.php");
       }
