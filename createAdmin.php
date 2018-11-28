@@ -1,34 +1,28 @@
 <?php
   $email = 0;
   $password = "";
-  $passConfirm = "";
-  $type = "C";
-  $clientID = 0;
-  $baseLocation = "";
-  $userName = "";
+  $firstName = "";
+  $type = "A";
+  $lastName = 0;
   $code = "";
   $err = false;
 
   if (isset($_POST["submit"])) {
     if(isset($_POST["email"])) $email = $_POST["email"];
     if(isset($_POST["password"])) $password = $_POST["password"];
-    if(isset($_POST["passConfirm"])) $passConfirm = $_POST["passConfirm"];
-    if(isset($_POST["clientID"])) $clientID = $_POST["clientID"];
-    if(isset($_POST["baseLocation"])) $baseLocation = $_POST["baseLocation"];
-    if(isset($_POST["userName"])) $userName = $_POST["userName"];
+    if(isset($_POST["firstName"])) $firstName = $_POST["firstName"];
+    if(isset($_POST["lastName"])) $lastName = $_POST["lastName"];
     if(isset($_POST["code"])) $code = $_POST["code"];
 
-    if (!empty($email) && !empty($password) && !empty($clientID) && !empty($baseLocation) && !empty($userName) && !empty($code))
+    if (!empty($email) && !empty($password) && !empty($lastName) && !empty($baseLocation) && !empty($userName) && !empty($code))
     {
       session_start();
       $_SESSION["email"] = $email;
       $_SESSION["password"] = $password;
-      $_SESSION["passConfirm"] = $passConfirm;
-      $_SESSION["clientID"] = $clientID;
-      $_SESSION["baseLocation"] = $baseLocation;
-      $_SESSION["userName"] = $userName;
+      $_SESSION["firstName"] = $firstName;
+      $_SESSION["lastName"] = $lastName;
       $_SESSION["code"] = $code;
-      header("Location: creationConfirm.php");
+      header("Location: adminCreationConfirm.php");
     }
     else
     {
@@ -64,9 +58,9 @@
     <br />
 
     <label>Confirm password:
-      <input type="text" name="passConfirm" value="<?php echo $passConfirm; ?>" />
+      <input type="text" name="firstName" value="<?php echo $firstName; ?>" />
       <?php
-        if ($err && empty($passConfirm)) {
+        if ($err && empty($firstName)) {
           echo "<label class='errlabel'>Please enter a password.</label>";
         }
       ?>
@@ -74,7 +68,7 @@
     <br />
 
     <label>Client ID:
-      <select name="clientID">
+      <select name="lastName">
         <?php
           for ($i=1; $i <= 3 ; $i++) {
             echo "<option>$i</option>";
