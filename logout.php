@@ -7,7 +7,7 @@
   <img src="reynholm.jpg" height="5%" width="5%">
   <?php
     echo "<p>Goodbye!</p>";
-    echo "You have successfully logged out. Please <a href='login.php'>click here to login again</a>";
+    echo "You have successfully logged out. Please <a href='who.html'>click here to login again</a>";
   ?>
 
 
