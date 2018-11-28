@@ -39,12 +39,12 @@ USE `newTruckData`;
 DROP TABLE IF EXISTS `admin`;
 
 CREATE TABLE `admin` (
-  `adminID` INTEGER NOT NULL, 
-  `email` VARCHAR(255), 
-  `password` VARCHAR(255), 
-  `firstName` VARCHAR(255), 
-  `lastName` VARCHAR(255), 
-  `type` VARCHAR(255), 
+  `adminID` INTEGER NOT NULL AUTO_INCREMENT,
+  `email` VARCHAR(255),
+  `password` VARCHAR(255),
+  `firstName` VARCHAR(255),
+  `lastName` VARCHAR(255),
+  `type` VARCHAR(255),
   PRIMARY KEY (`adminID`)
 ) ENGINE=myisam DEFAULT CHARSET=utf8;
 
@@ -66,13 +66,13 @@ INSERT INTO `admin` (`adminID`, `email`, `password`, `firstName`, `lastName`, `t
 DROP TABLE IF EXISTS `client`;
 
 CREATE TABLE `client` (
-  `clientID` INTEGER NOT NULL, 
-  `email` VARCHAR(255), 
-  `password` VARCHAR(255), 
-  `clientName` VARCHAR(255), 
-  `baseLocation` VARCHAR(255), 
-  `userName` VARCHAR(255), 
-  `type` VARCHAR(255), 
+  `clientID` INTEGER NOT NULL AUTO_INCREMENT,
+  `email` VARCHAR(255),
+  `password` VARCHAR(255),
+  `clientName` VARCHAR(255),
+  `baseLocation` VARCHAR(255),
+  `userName` VARCHAR(255),
+  `type` VARCHAR(255),
   PRIMARY KEY (`clientID`)
 ) ENGINE=myisam DEFAULT CHARSET=utf8;
 
@@ -94,19 +94,19 @@ INSERT INTO `client` (`clientID`, `email`, `password`, `clientName`, `baseLocati
 DROP TABLE IF EXISTS `fufillments`;
 
 CREATE TABLE `fufillments` (
-  `fufillID` INTEGER NOT NULL, 
-  `clientID` DOUBLE NULL, 
-  `clientName` VARCHAR(255), 
-  `origin` VARCHAR(255), 
-  `destination` VARCHAR(255), 
-  `miles` DOUBLE NULL, 
-  `rate` DOUBLE NULL, 
-  `ratePerMile` DOUBLE NULL, 
-  `weight` DOUBLE NULL, 
-  `dateListed` DATETIME, 
-  `CDL` VARCHAR(255), 
-  `dateFulfilled` DATETIME, 
-  INDEX (`clientID`), 
+  `fufillID` INTEGER NOT NULL AUTO_INCREMENT,
+  `clientID` DOUBLE NULL,
+  `clientName` VARCHAR(255),
+  `origin` VARCHAR(255),
+  `destination` VARCHAR(255),
+  `miles` DOUBLE NULL,
+  `rate` DOUBLE NULL,
+  `ratePerMile` DOUBLE NULL,
+  `weight` DOUBLE NULL,
+  `dateListed` DATETIME,
+  `CDL` VARCHAR(255),
+  `dateFulfilled` DATETIME,
+  INDEX (`clientID`),
   PRIMARY KEY (`fufillID`)
 ) ENGINE=myisam DEFAULT CHARSET=utf8;
 
@@ -130,18 +130,18 @@ INSERT INTO `fufillments` (`fufillID`, `clientID`, `clientName`, `origin`, `dest
 DROP TABLE IF EXISTS `inTransit`;
 
 CREATE TABLE `inTransit` (
-  `transitID` INTEGER NOT NULL, 
-  `clientID` INTEGER, 
-  `clientName` VARCHAR(255), 
-  `origin` VARCHAR(255), 
-  `destination` VARCHAR(255), 
-  `miles` DOUBLE NULL, 
-  `rate` DOUBLE NULL, 
-  `ratePerMile` DOUBLE NULL, 
-  `weight` DOUBLE NULL, 
-  `dateListed` DATETIME, 
-  `CDL` VARCHAR(255), 
-  INDEX (`clientID`), 
+  `transitID` INTEGER NOT NULL AUTO_INCREMENT,
+  `clientID` INTEGER,
+  `clientName` VARCHAR(255),
+  `origin` VARCHAR(255),
+  `destination` VARCHAR(255),
+  `miles` DOUBLE NULL,
+  `rate` DOUBLE NULL,
+  `ratePerMile` DOUBLE NULL,
+  `weight` DOUBLE NULL,
+  `dateListed` DATETIME,
+  `CDL` VARCHAR(255),
+  INDEX (`clientID`),
   PRIMARY KEY (`transitID`)
 ) ENGINE=myisam DEFAULT CHARSET=utf8;
 
@@ -165,15 +165,15 @@ INSERT INTO `inTransit` (`transitID`, `clientID`, `clientName`, `origin`, `desti
 DROP TABLE IF EXISTS `listing`;
 
 CREATE TABLE `listing` (
-  `listingID` INTEGER, 
-  `clientID` INTEGER, 
-  `clientName` VARCHAR(255), 
-  `origin` VARCHAR(255), 
-  `destination` VARCHAR(255), 
-  `miles` DOUBLE NULL, 
-  `rate` DOUBLE NULL, 
-  `ratePerMile` DOUBLE NULL, 
-  `weight` DOUBLE NULL, 
+  `listingID` INTEGER AUTO_INCREMENT,
+  `clientID` INTEGER,
+  `clientName` VARCHAR(255),
+  `origin` VARCHAR(255),
+  `destination` VARCHAR(255),
+  `miles` DOUBLE NULL,
+  `rate` DOUBLE NULL,
+  `ratePerMile` DOUBLE NULL,
+  `weight` DOUBLE NULL,
   `dateListed` DATETIME
 ) ENGINE=myisam DEFAULT CHARSET=utf8;
 
@@ -197,17 +197,17 @@ INSERT INTO `listing` (`listingID`, `clientID`, `clientName`, `origin`, `destina
 DROP TABLE IF EXISTS `needApproval`;
 
 CREATE TABLE `needApproval` (
-  `modID` INTEGER NOT NULL, 
-  `clientID` INTEGER, 
-  `clientName` VARCHAR(255), 
-  `origin` VARCHAR(255), 
-  `destination` VARCHAR(255), 
-  `miles` DOUBLE NULL, 
-  `rate` DOUBLE NULL, 
-  `ratePerMile` DOUBLE NULL, 
-  `weight` DOUBLE NULL, 
-  `dateListed` DATETIME, 
-  INDEX (`clientID`), 
+  `modID` INTEGER NOT NULL AUTO_INCREMENT,
+  `clientID` INTEGER,
+  `clientName` VARCHAR(255),
+  `origin` VARCHAR(255),
+  `destination` VARCHAR(255),
+  `miles` DOUBLE NULL,
+  `rate` DOUBLE NULL,
+  `ratePerMile` DOUBLE NULL,
+  `weight` DOUBLE NULL,
+  `dateListed` DATETIME,
+  INDEX (`clientID`),
   PRIMARY KEY (`modID`)
 ) ENGINE=myisam DEFAULT CHARSET=utf8;
 
@@ -231,13 +231,13 @@ INSERT INTO `needApproval` (`modID`, `clientID`, `clientName`, `origin`, `destin
 DROP TABLE IF EXISTS `trucker`;
 
 CREATE TABLE `trucker` (
-  `CDL` VARCHAR(255) NOT NULL, 
-  `email` VARCHAR(255), 
-  `password` VARCHAR(255), 
-  `firstName` VARCHAR(255), 
-  `lastName` VARCHAR(255), 
-  `city` VARCHAR(255), 
-  `state` VARCHAR(255), 
+  `CDL` VARCHAR(255) NOT NULL,
+  `email` VARCHAR(255),
+  `password` VARCHAR(255),
+  `firstName` VARCHAR(255),
+  `lastName` VARCHAR(255),
+  `city` VARCHAR(255),
+  `state` VARCHAR(255),
   PRIMARY KEY (`CDL`)
 ) ENGINE=myisam DEFAULT CHARSET=utf8;
 
@@ -251,4 +251,3 @@ INSERT INTO `trucker` (`CDL`, `email`, `password`, `firstName`, `lastName`, `cit
 INSERT INTO `trucker` (`CDL`, `email`, `password`, `firstName`, `lastName`, `city`, `state`) VALUES ('5402-99-5134', 'kyesinin4@microsoft.com', 'trucker', 'Karyn', 'Whistan', 'Memphis', 'Tennessee');
 INSERT INTO `trucker` (`CDL`, `email`, `password`, `firstName`, `lastName`, `city`, `state`) VALUES ('5555-55-5555', 'hbarmby5@jiathis.com', 'trucker', 'Lynea', 'Minards', 'Washington', 'District of Columbia');
 # 3 records
-
