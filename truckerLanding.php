@@ -6,10 +6,7 @@
 <body>
   <nav>
     <img src="reynholm.jpg" height="5%" width="5%">
-    <a href="truckerLanding.php">Home</a> |
- <a href="timetable.php">Moderation</a> |
- <a href="record.php">Your Record</a> |
- <a href="advising.php">Advising</a> |
+    <a href="truckerLanding.php">Home</a>
 </nav>
   <?php
     //resume the session variable on this page
@@ -22,7 +19,7 @@
       $timeString = "afternoon";
     }
 
-    echo "<p>Good ".$timeString."!</p>";
+    echo "<p>Good ".$timeString." ".$_SESSION["firstName"]."!</p>";
 
    ?>
    <p><a href="logout.php">Click here to log out</a></p>

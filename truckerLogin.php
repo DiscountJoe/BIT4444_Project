@@ -2,6 +2,8 @@
   $email="";
   $password="";
   $remember="no";
+  $CDL = "";
+  $firstName = "";
   $error = false;
   $loginOK = null;
 
@@ -23,7 +25,7 @@
     if(!$error){
       //check email and password with the database record
       require_once("db.php");
-      $sql = "select password from trucker where email='$email'";
+      $sql = "select password, CDL, firstName from trucker where email='$email'";
       $result = $mydb->query($sql);
 
       $row=mysqli_fetch_array($result);
@@ -39,6 +41,8 @@
         //set session variable to remember the email
         session_start();
         $_SESSION["email"] = $email;
+        $_SESSION["CDL"] = $row["CDL"];
+        $_SESSION["firstName"] = $row["firstName"];
         setcookie("password", $password, time()+86400*3);
 
         Header("Location:truckerLanding.php");
