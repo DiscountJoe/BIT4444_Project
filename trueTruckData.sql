@@ -7,7 +7,7 @@
 # Program Version 5.5.282
 #
 # OPTIONS:
-#   sourcefilename=C:/wamp64/www/trucking/truckData.accdb
+#   sourcefilename=C:/wamp64/www/trucking/trueTruckData.accdb
 #   sourceusername=
 #   sourcepassword=
 #   sourcesystemdatabase=
@@ -104,6 +104,9 @@ CREATE TABLE `listing` (
   `ratePerMile` DOUBLE NULL,
   `weight` DOUBLE NULL,
   `dateListed` DATETIME,
+  `CDL` VARCHAR(255),
+  `dateFufilled` VARCHAR(255),
+  `state` VARCHAR(255),
   INDEX (`clientID`),
   PRIMARY KEY (`listingID`)
 ) ENGINE=myisam DEFAULT CHARSET=utf8;
@@ -114,26 +117,26 @@ SET autocommit=1;
 # Dumping data for table 'listing'
 #
 
-INSERT INTO `listing` (`listingID`, `clientID`, `clientName`, `origin`, `destination`, `miles`, `rate`, `ratePerMile`, `weight`, `dateListed`) VALUES (1, 1, 'Wang Enterprises', 'Mulhouse', 'Capri', 344, 1692, 4.91860465116279, 1, '2018-05-14 00:00:00');
-INSERT INTO `listing` (`listingID`, `clientID`, `clientName`, `origin`, `destination`, `miles`, `rate`, `ratePerMile`, `weight`, `dateListed`) VALUES (2, 3, 'Ares Macrotechnology', 'Sadananya', 'Calumpang', 1084, 2118, 1.95387453874539, 2, '2018-05-21 00:00:00');
-INSERT INTO `listing` (`listingID`, `clientID`, `clientName`, `origin`, `destination`, `miles`, `rate`, `ratePerMile`, `weight`, `dateListed`) VALUES (3, 3, 'Ares Macrotechnology', 'Skreet', 'Rust 2', 573, 1480, 2.58289703315881, 6, '2017-12-07 00:00:00');
-INSERT INTO `listing` (`listingID`, `clientID`, `clientName`, `origin`, `destination`, `miles`, `rate`, `ratePerMile`, `weight`, `dateListed`) VALUES (4, 3, 'Ares Macrotechnology', 'Jack Knife Edge Town', 'Mesquite', 702, 3469, 4.94159544159544, 13, '2018-09-04 00:00:00');
-INSERT INTO `listing` (`listingID`, `clientID`, `clientName`, `origin`, `destination`, `miles`, `rate`, `ratePerMile`, `weight`, `dateListed`) VALUES (5, 3, 'Ares Macrotechnology', 'Giovanna', 'Gaomi', 554, 4876, 8.8014440433213, 1, '2017-12-26 00:00:00');
-INSERT INTO `listing` (`listingID`, `clientID`, `clientName`, `origin`, `destination`, `miles`, `rate`, `ratePerMile`, `weight`, `dateListed`) VALUES (6, 2, 'Weyland-Yutani', 'Severnyy', 'Kildare', 619, 2999, 4.84491114701131, 12, '2017-11-26 00:00:00');
-INSERT INTO `listing` (`listingID`, `clientID`, `clientName`, `origin`, `destination`, `miles`, `rate`, `ratePerMile`, `weight`, `dateListed`) VALUES (7, 2, 'Weyland-Yutani', 'Tenggina Daya', 'Anoek', 2399, 4583, 1.91037932471863, 10, '2018-06-07 00:00:00');
-INSERT INTO `listing` (`listingID`, `clientID`, `clientName`, `origin`, `destination`, `miles`, `rate`, `ratePerMile`, `weight`, `dateListed`) VALUES (8, 2, 'Weyland-Yutani', 'Morioh', 'Wenping', 1960, 2421, 1.23520408163265, 6, '2018-11-11 00:00:00');
-INSERT INTO `listing` (`listingID`, `clientID`, `clientName`, `origin`, `destination`, `miles`, `rate`, `ratePerMile`, `weight`, `dateListed`) VALUES (9, 1, 'Wang Enterprises', 'Meaux', 'Giorno', 387, 3873, 10.0077519379845, 8, '2018-09-20 00:00:00');
-INSERT INTO `listing` (`listingID`, `clientID`, `clientName`, `origin`, `destination`, `miles`, `rate`, `ratePerMile`, `weight`, `dateListed`) VALUES (10, 1, 'Wang Enterprises', 'Xiejia', 'Shangshuai', 1884, 1234, .654989384288747, 10, '2017-11-28 00:00:00');
-INSERT INTO `listing` (`listingID`, `clientID`, `clientName`, `origin`, `destination`, `miles`, `rate`, `ratePerMile`, `weight`, `dateListed`) VALUES (11, 1, 'Wang Enterprises', 'Mulhouse', 'Capri', 344, 1000, 2.90697674418605, 1, '2018-05-14 00:00:00');
-INSERT INTO `listing` (`listingID`, `clientID`, `clientName`, `origin`, `destination`, `miles`, `rate`, `ratePerMile`, `weight`, `dateListed`) VALUES (12, 3, 'Ares Macrotechnology', 'Sadananya', 'Calumpang', 1084, 1500, 1.38376383763838, 2, '2018-05-21 00:00:00');
-INSERT INTO `listing` (`listingID`, `clientID`, `clientName`, `origin`, `destination`, `miles`, `rate`, `ratePerMile`, `weight`, `dateListed`) VALUES (13, 3, 'Ares Macrotechnology', 'Skreet', 'Rust 2', 573, 2390, 4.17102966841187, 6, '2017-12-07 00:00:00');
-INSERT INTO `listing` (`listingID`, `clientID`, `clientName`, `origin`, `destination`, `miles`, `rate`, `ratePerMile`, `weight`, `dateListed`) VALUES (14, 3, 'Ares Macrotechnology', 'Jack Knife Edge Town', 'Mesquite', 702, 2222, 3.16524216524217, 13, '2018-09-04 00:00:00');
-INSERT INTO `listing` (`listingID`, `clientID`, `clientName`, `origin`, `destination`, `miles`, `rate`, `ratePerMile`, `weight`, `dateListed`) VALUES (15, 3, 'Ares Macrotechnology', 'Giovanna', 'Gaomi', 554, 1256, 2.26714801444043, 1, '2017-12-26 00:00:00');
-INSERT INTO `listing` (`listingID`, `clientID`, `clientName`, `origin`, `destination`, `miles`, `rate`, `ratePerMile`, `weight`, `dateListed`) VALUES (16, 1, 'Wang Enterprises', 'Dois Vizinhos', 'Wassa-Akropong', 2038, 498, .244357212953876, 3, '2018-10-25 00:00:00');
-INSERT INTO `listing` (`listingID`, `clientID`, `clientName`, `origin`, `destination`, `miles`, `rate`, `ratePerMile`, `weight`, `dateListed`) VALUES (17, 1, 'Wang Enterprises', 'Kalchevaya', 'Boitown', 2202, 1543, .700726612170754, 18, '2018-04-11 00:00:00');
-INSERT INTO `listing` (`listingID`, `clientID`, `clientName`, `origin`, `destination`, `miles`, `rate`, `ratePerMile`, `weight`, `dateListed`) VALUES (18, 3, 'Ares Macrotechnology', 'Chaoyang', 'Kadoma', 1175, 252, .214468085106383, 7, '2017-11-17 00:00:00');
-INSERT INTO `listing` (`listingID`, `clientID`, `clientName`, `origin`, `destination`, `miles`, `rate`, `ratePerMile`, `weight`, `dateListed`) VALUES (19, 2, 'Weyland-Yutani', 'Ducheng', 'Novyy Urgal', 1659, 286, .172393007836046, 2, '2018-11-07 00:00:00');
-INSERT INTO `listing` (`listingID`, `clientID`, `clientName`, `origin`, `destination`, `miles`, `rate`, `ratePerMile`, `weight`, `dateListed`) VALUES (20, 2, 'Weyland-Yutani', 'Bor Ondor', 'Fengsheng', 574, 4887, 8.51393728222997, 18, '2018-04-25 00:00:00');
+INSERT INTO `listing` (`listingID`, `clientID`, `clientName`, `origin`, `destination`, `miles`, `rate`, `ratePerMile`, `weight`, `dateListed`, `CDL`, `dateFufilled`, `state`) VALUES (1, 1, 'Wang Enterprises', 'Mulhouse', 'Capri', 344, 1692, 4.91860465116279, 1, '2018-05-14 00:00:00', 'N/A', 'N/A', 'L');
+INSERT INTO `listing` (`listingID`, `clientID`, `clientName`, `origin`, `destination`, `miles`, `rate`, `ratePerMile`, `weight`, `dateListed`, `CDL`, `dateFufilled`, `state`) VALUES (2, 3, 'Ares Macrotechnology', 'Sadananya', 'Calumpang', 1084, 2118, 1.95387453874539, 2, '2018-05-21 00:00:00', 'N/A', 'N/A', 'L');
+INSERT INTO `listing` (`listingID`, `clientID`, `clientName`, `origin`, `destination`, `miles`, `rate`, `ratePerMile`, `weight`, `dateListed`, `CDL`, `dateFufilled`, `state`) VALUES (3, 3, 'Ares Macrotechnology', 'Skreet', 'Rust 2', 573, 1480, 2.58289703315881, 6, '2017-12-07 00:00:00', 'N/A', 'N/A', 'L');
+INSERT INTO `listing` (`listingID`, `clientID`, `clientName`, `origin`, `destination`, `miles`, `rate`, `ratePerMile`, `weight`, `dateListed`, `CDL`, `dateFufilled`, `state`) VALUES (4, 3, 'Ares Macrotechnology', 'Jack Knife Edge Town', 'Mesquite', 702, 3469, 4.94159544159544, 13, '2018-09-04 00:00:00', 'N/A', 'N/A', 'L');
+INSERT INTO `listing` (`listingID`, `clientID`, `clientName`, `origin`, `destination`, `miles`, `rate`, `ratePerMile`, `weight`, `dateListed`, `CDL`, `dateFufilled`, `state`) VALUES (5, 3, 'Ares Macrotechnology', 'Giovanna', 'Gaomi', 554, 4876, 8.8014440433213, 1, '2017-12-26 00:00:00', 'N/A', 'N/A', 'L');
+INSERT INTO `listing` (`listingID`, `clientID`, `clientName`, `origin`, `destination`, `miles`, `rate`, `ratePerMile`, `weight`, `dateListed`, `CDL`, `dateFufilled`, `state`) VALUES (6, 2, 'Weyland-Yutani', 'Severnyy', 'Kildare', 619, 2999, 4.84491114701131, 12, '2017-11-26 00:00:00', '1234-22-0987', 'N/A', 'IT');
+INSERT INTO `listing` (`listingID`, `clientID`, `clientName`, `origin`, `destination`, `miles`, `rate`, `ratePerMile`, `weight`, `dateListed`, `CDL`, `dateFufilled`, `state`) VALUES (7, 2, 'Weyland-Yutani', 'Tenggina Daya', 'Anoek', 2399, 4583, 1.91037932471863, 10, '2018-06-07 00:00:00', '5402-99-5134', 'N/A', 'IT');
+INSERT INTO `listing` (`listingID`, `clientID`, `clientName`, `origin`, `destination`, `miles`, `rate`, `ratePerMile`, `weight`, `dateListed`, `CDL`, `dateFufilled`, `state`) VALUES (8, 2, 'Weyland-Yutani', 'Morioh', 'Wenping', 1960, 2421, 1.23520408163265, 6, '2018-11-11 00:00:00', '5555-55-5555', 'N/A', 'IT');
+INSERT INTO `listing` (`listingID`, `clientID`, `clientName`, `origin`, `destination`, `miles`, `rate`, `ratePerMile`, `weight`, `dateListed`, `CDL`, `dateFufilled`, `state`) VALUES (9, 1, 'Wang Enterprises', 'Meaux', 'Giorno', 387, 3873, 10.0077519379845, 8, '2018-09-20 00:00:00', '1234-22-0987', 'N/A', 'IT');
+INSERT INTO `listing` (`listingID`, `clientID`, `clientName`, `origin`, `destination`, `miles`, `rate`, `ratePerMile`, `weight`, `dateListed`, `CDL`, `dateFufilled`, `state`) VALUES (10, 1, 'Wang Enterprises', 'Xiejia', 'Shangshuai', 1884, 1234, .654989384288747, 10, '2017-11-28 00:00:00', '5555-55-5555', 'N/A', 'IT');
+INSERT INTO `listing` (`listingID`, `clientID`, `clientName`, `origin`, `destination`, `miles`, `rate`, `ratePerMile`, `weight`, `dateListed`, `CDL`, `dateFufilled`, `state`) VALUES (11, 1, 'Wang Enterprises', 'Mulhouse', 'Capri', 344, 1000, 2.90697674418605, 1, '2018-05-14 00:00:00', 'N/A', 'N/A', 'NA');
+INSERT INTO `listing` (`listingID`, `clientID`, `clientName`, `origin`, `destination`, `miles`, `rate`, `ratePerMile`, `weight`, `dateListed`, `CDL`, `dateFufilled`, `state`) VALUES (12, 3, 'Ares Macrotechnology', 'Sadananya', 'Calumpang', 1084, 1500, 1.38376383763838, 2, '2018-05-21 00:00:00', 'N/A', 'N/A', 'NA');
+INSERT INTO `listing` (`listingID`, `clientID`, `clientName`, `origin`, `destination`, `miles`, `rate`, `ratePerMile`, `weight`, `dateListed`, `CDL`, `dateFufilled`, `state`) VALUES (13, 3, 'Ares Macrotechnology', 'Skreet', 'Rust 2', 573, 2390, 4.17102966841187, 6, '2017-12-07 00:00:00', 'N/A', 'N/A', 'NA');
+INSERT INTO `listing` (`listingID`, `clientID`, `clientName`, `origin`, `destination`, `miles`, `rate`, `ratePerMile`, `weight`, `dateListed`, `CDL`, `dateFufilled`, `state`) VALUES (14, 3, 'Ares Macrotechnology', 'Jack Knife Edge Town', 'Mesquite', 702, 2222, 3.16524216524217, 13, '2018-09-04 00:00:00', 'N/A', 'N/A', 'NA');
+INSERT INTO `listing` (`listingID`, `clientID`, `clientName`, `origin`, `destination`, `miles`, `rate`, `ratePerMile`, `weight`, `dateListed`, `CDL`, `dateFufilled`, `state`) VALUES (15, 3, 'Ares Macrotechnology', 'Giovanna', 'Gaomi', 554, 1256, 2.26714801444043, 1, '2017-12-26 00:00:00', 'N/A', 'N/A', 'NA');
+INSERT INTO `listing` (`listingID`, `clientID`, `clientName`, `origin`, `destination`, `miles`, `rate`, `ratePerMile`, `weight`, `dateListed`, `CDL`, `dateFufilled`, `state`) VALUES (16, 1, 'Wang Enterprises', 'Dois Vizinhos', 'Wassa-Akropong', 2038, 498, .244357212953876, 3, '2018-10-25 00:00:00', '1234-22-0987', '10/30/2018', 'F');
+INSERT INTO `listing` (`listingID`, `clientID`, `clientName`, `origin`, `destination`, `miles`, `rate`, `ratePerMile`, `weight`, `dateListed`, `CDL`, `dateFufilled`, `state`) VALUES (17, 1, 'Wang Enterprises', 'Kalchevaya', 'Boitown', 2202, 1543, .700726612170754, 18, '2018-04-11 00:00:00', '1234-22-0987', '4/15/2018', 'F');
+INSERT INTO `listing` (`listingID`, `clientID`, `clientName`, `origin`, `destination`, `miles`, `rate`, `ratePerMile`, `weight`, `dateListed`, `CDL`, `dateFufilled`, `state`) VALUES (18, 3, 'Ares Macrotechnology', 'Chaoyang', 'Kadoma', 1175, 252, .214468085106383, 7, '2017-11-17 00:00:00', '1234-22-0987', '11/20/2017', 'F');
+INSERT INTO `listing` (`listingID`, `clientID`, `clientName`, `origin`, `destination`, `miles`, `rate`, `ratePerMile`, `weight`, `dateListed`, `CDL`, `dateFufilled`, `state`) VALUES (19, 2, 'Weyland-Yutani', 'Ducheng', 'Novyy Urgal', 1659, 286, .172393007836046, 2, '2018-11-07 00:00:00', '5402-99-5134', '11/12/2018', 'F');
+INSERT INTO `listing` (`listingID`, `clientID`, `clientName`, `origin`, `destination`, `miles`, `rate`, `ratePerMile`, `weight`, `dateListed`, `CDL`, `dateFufilled`, `state`) VALUES (20, 2, 'Weyland-Yutani', 'Bor Ondor', 'Fengsheng', 574, 4887, 8.51393728222997, 18, '2018-04-25 00:00:00', '5555-55-5555', '4/30/2018', 'F');
 # 20 records
 
 #
@@ -143,7 +146,7 @@ INSERT INTO `listing` (`listingID`, `clientID`, `clientName`, `origin`, `destina
 DROP TABLE IF EXISTS `trucker`;
 
 CREATE TABLE `trucker` (
-  `CDL` VARCHAR(255) NOT NULL AUTO_INCREMENT,
+  `CDL` VARCHAR(255) NOT NULL,
   `email` VARCHAR(255),
   `password` VARCHAR(255),
   `firstName` VARCHAR(255),
