@@ -13,7 +13,7 @@
     if(isset($_POST["baseLocation"])) $baseLocation = $_POST["baseLocation"];
     if(isset($_POST["clientName"])) $clientName = $_POST["clientName"];
 
-    if (!empty($email) && !empty($password) && !empty($baseLocation))
+    if (!empty($email) && !empty($password) && !empty($baseLocation) && !empty($clientName) && strcmp($passConfirm,$password))
     {
       session_start();
 
@@ -74,7 +74,7 @@
       <input type="text" name="passConfirm" value="<?php echo $passConfirm; ?>" />
       <?php
         if ($err && empty($passConfirm)) {
-          echo "<label class='errlabel'>Please enter a password.</label>";
+          echo "<label class='errlabel'>Please enter the same password twice.</label>";
         }
       ?>
     </label>
