@@ -1,3 +1,9 @@
+<?php
+if (isset($_POST["submit"])) {
+    if(isset($_POST["listingID"])) $_SESSION['listingID']=$_POST["listingID"];
+    Header("Location:  clientListingDetailView.php");
+  }
+?>
 <html>
 <head>
   <title>Client Listings History</title>
@@ -62,6 +68,7 @@ $result = $mydb->query($sql);
 echo
 "<table>
     <tr>
+      <th>  ListingID </th>
       <th>  Client Name </th>
       <th>  Origin  </th>
       <th>  Destination </th>
@@ -74,27 +81,24 @@ echo
     </tr>";
 
   while($row = mysqli_fetch_array($result)) {
+    $lid=$row['listingID'];
     echo
     "<tr>
+        <td>".$lid."</td>
         <td>".$row['clientName']."</td>
         <td>".$row['origin']."</td>
         <td>".$row['destination']."</td>
         <td>".$row['dateListed']."</td>
         <td>".$row['weight']."</td>
-        <td>".$row['rate']."</td>
-        <td>".$row['miles']."</td>
-        <td>".$row['ratePerMile']."</td>
-        <td><form type='submit' name='listingID'
-        value='View More' method='post'
-        action='$_SERVER['PHP_SELF']'/>
-        <input type="hidden" name="clientID" value=".$row['clientID']." />
+        <td>$".$row['rate']."</td>
+        <td>$".$row['miles']."</td>
+        <td>$".$row['ratePerMile']."</td>
+        <td><form method='post'
+        action='".$_SERVER['PHP_SELF']."'>
+        <input type='text' name='listingID' value=".$lid." />
+        <input type='submit' name='submit' value='submit' />
         </form></td>
       </tr>";
   }
-  echo "</table>"
-  if (isset($_POST["submit"])) {
-    $_SESSION['clientID'];
-    if(isset($_POST["clientID"])) $clientID=$_POST["clientID"];
-    Header("Location:clientListingDetailView.php");
-  }
+  echo "</table>";
 ?>
