@@ -174,7 +174,8 @@ CREATE TABLE `listing` (
   `rate` DOUBLE NULL,
   `ratePerMile` DOUBLE NULL,
   `weight` DOUBLE NULL,
-  `dateListed` DATETIME
+  `dateListed` DATETIME,
+  PRIMARY KEY (`listingID`)
 ) ENGINE=myisam DEFAULT CHARSET=utf8;
 
 SET autocommit=1;
