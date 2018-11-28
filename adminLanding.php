@@ -7,7 +7,7 @@
   <nav>
     <img src="reynholm.jpg" height="5%" width="5%">
     <a href="adminlanding.php">Home</a> |
- <a href="moderationnew.php">Moderation</a> |
+ <a href="moderationNew.php">Moderation</a> |
 
 </nav>
   <?php
