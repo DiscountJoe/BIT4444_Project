@@ -1,34 +1,28 @@
 <?php
-  $email = 0;
+  $email = "";
   $password = "";
   $passConfirm = "";
-  $type = "C";
-  $clientID = 0;
   $baseLocation = "";
-  $userName = "";
-  $code = "";
   $err = false;
+  $clientName = "";
 
   if (isset($_POST["submit"])) {
     if(isset($_POST["email"])) $email = $_POST["email"];
     if(isset($_POST["password"])) $password = $_POST["password"];
     if(isset($_POST["passConfirm"])) $passConfirm = $_POST["passConfirm"];
-    if(isset($_POST["clientID"])) $clientID = $_POST["clientID"];
     if(isset($_POST["baseLocation"])) $baseLocation = $_POST["baseLocation"];
-    if(isset($_POST["userName"])) $userName = $_POST["userName"];
-    if(isset($_POST["code"])) $code = $_POST["code"];
+    if(isset($_POST["clientName"])) $clientName = $_POST["clientName"];
 
-    if (!empty($email) && !empty($password) && !empty($clientID) && !empty($baseLocation) && !empty($userName) && !empty($code))
+    if (!empty($email) && !empty($password) && !empty($baseLocation))
     {
       session_start();
+
+      $_SESSION["clientName"] = $clientName;
       $_SESSION["email"] = $email;
       $_SESSION["password"] = $password;
       $_SESSION["passConfirm"] = $passConfirm;
-      $_SESSION["clientID"] = $clientID;
       $_SESSION["baseLocation"] = $baseLocation;
-      $_SESSION["userName"] = $userName;
-      $_SESSION["code"] = $code;
-      header("Location: creationConfirm.php");
+      header("Location: clientCreationConfirm.php");
     }
     else
     {
@@ -38,7 +32,7 @@
 ?>
 
 <!doctype html>
-
+<html>
 <head>
   <title>Create Client</title>
   <style>
@@ -46,10 +40,23 @@
   </style>
 </head>
 <body>
-  <form method="post" action="<?php echo $_SERVER['PHP_SELF']?>"
+  <form method="post" action="<?php echo $_SERVER['PHP_SELF']?>">
+    <label>client name:
+      <input type="text" name="clientName" value="<?php echo $clientName; ?>" />
+      <?php
+        if ($err && empty($clientName)) {
+          echo "<label class='errlabel'>Please enter a valid client Name.</label>";
+        }
+      ?>
+    </label>
+    <br />
     <label>email:
-      <input type="text" name="email" value="<?php if(!empty($email)) echo $email; ?>" />
-
+      <input type="text" name="email" value="<?php echo $email; ?>" />
+      <?php
+        if ($err && empty($email)) {
+          echo "<label class='errlabel'>Please enter a valid email.</label>";
+        }
+      ?>
     </label>
     <br />
 
@@ -73,17 +80,6 @@
     </label>
     <br />
 
-    <label>Client ID:
-      <select name="clientID">
-        <?php
-          for ($i=1; $i <= 3 ; $i++) {
-            echo "<option>$i</option>";
-          }
-        ?>
-      </select>
-    </label>
-    <br />
-
     <label>Base Location:
       <input type="text" name="baseLocation" value="<?php echo $baseLocation; ?>" />
       <?php
@@ -93,26 +89,6 @@
       ?>
     </label>
     <br />
-
-    <label>User Name:
-      <input type="text" name="userName" value="<?php echo $userName; ?>" />
-      <?php
-        if ($err && empty($userName)) {
-          echo "<label class='errlabel'>Please enter a valid userName.</label>";
-        }
-      ?>
-    </label>
-    <br />
-
-    <label>Code:
-      <input type="text" name="code" value="<?php echo $code; ?>" />
-      <?php
-        if ($err && empty($code)) {
-          echo "<label class='errlabel'>Please enter a valid code.</label>";
-        }
-      ?>
-    </label>
-    <br />
-
     <input type="submit" name="submit" value="Submit" />
+  </form>
 </body>
