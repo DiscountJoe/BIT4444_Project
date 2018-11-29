@@ -7,6 +7,10 @@ if (isset($_POST["submit"])) {
     if(isset($_POST["listingID"])) $_SESSION['listingID']=$_POST["listingID"];
     Header("Location:  disapprove.php");
   }
+  if (isset($_POST["approve"])) {
+      if(isset($_POST["listingID"])) $_SESSION['listingID']=$_POST["listingID"];
+      Header("Location:  approve.php");
+    }
 ?>
 <!doctype html>
 <html>
@@ -89,12 +93,12 @@ if (isset($_POST["submit"])) {
   "<tr>
     <td><form method='post'
         action='".$_SERVER['PHP_SELF']."'>
-          <input type='submit' name='submit' value='Edit Listing' />
+          <input type='submit' name='approve' value='Approve Listing' />
         </form>
     </td>
     <td><form method='post'
         action='".$_SERVER['PHP_SELF']."'>
-          <input type='submit' name='submit' value='Remove Listing' />
+          <input type='submit' name='submit' value='Cancel Listing' />
         </form>
     </td>
   </tr>";
