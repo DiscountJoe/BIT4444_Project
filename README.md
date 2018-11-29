@@ -1,4 +1,9 @@
 # BIT4444_Project
 Term project for BIT4444
 
-This project is made of LOVE AND PEACE, and that's tea, sis!
+This project is a load board with 3 user groups: clients, truckers, and admin.
+
+Made of love and peace by:
+Alex H.
+James V.
+Connor A.
