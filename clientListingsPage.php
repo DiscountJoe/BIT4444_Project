@@ -1,4 +1,8 @@
 <?php
+session_start();
+$clientName=$_SESSION['clientName'];
+$clientID=$_SESSION['clientID'];
+
 if (isset($_POST["submit"])) {
     if(isset($_POST["listingID"])) $_SESSION['listingID']=$_POST["listingID"];
     Header("Location:  clientListingDetailView.php");
@@ -13,7 +17,6 @@ if (isset($_POST["submit"])) {
   <tr>
     <td>Origin:</td>
     <td><?php
-    $clientID=3;//placeholder
     require_once("db.php");
     $sql="select distinct origin from listing where clientID='$clientID'";
     $result = $mydb->query($sql);
@@ -50,6 +53,9 @@ if (isset($_POST["submit"])) {
   <tr>
     <td>Date Listed:</td>
     <td><input type="date" name="dateListed" value="" /></td>
+    <td><input type="hidden" name="state" value="" /></td>
+    <td></td>
+    <td></td>
     <td></td>
   </tr>
 </table>
@@ -58,11 +64,6 @@ if (isset($_POST["submit"])) {
 </html>
 
 <?php
-session_start();
-
-$clientName=$_SESSION['clientName'];
-$clientID=$_SESSION['clientID'];
-
 $sql = "select * from listing where clientID='$clientID' and clientName='$clientName'";
 $result = $mydb->query($sql);
 echo
@@ -77,14 +78,14 @@ echo
       <th>  rate  </th>
       <th>  Miles </th>
       <th>  Rate per Mile </th>
+      <th>  Status </th>
       <th>Detail View</th>
     </tr>";
 
   while($row = mysqli_fetch_array($result)) {
-    $lid=$row['listingID'];
     echo
     "<tr>
-        <td>".$lid."</td>
+        <td>".$row['listingID']."</td>
         <td>".$row['clientName']."</td>
         <td>".$row['origin']."</td>
         <td>".$row['destination']."</td>
@@ -92,13 +93,22 @@ echo
         <td>".$row['weight']."</td>
         <td>$".$row['rate']."</td>
         <td>$".$row['miles']."</td>
-        <td>$".$row['ratePerMile']."</td>
-        <td><form method='post'
+        <td>$".$row['ratePerMile']."</td>";
+
+        if ($row['state']=="NA"){echo "<td>Needs Approval</td>";}
+        elseif($row['state']=="L"){echo "<td>Listed</td>";}
+        elseif($row['state']=="IT"){echo "<td>In Transit</td>";}
+        elseif($row['state']=="F"){echo "<td>Fulfilled</td>";}
+        elseif($row['state']=="R"){echo "<td>Removed</td>";}
+
+    echo"<td><form method='post'
         action='".$_SERVER['PHP_SELF']."'>
-        <input type='text' name='listingID' value=".$lid." />
-        <input type='submit' name='submit' value='submit' />
+        <input type='hidden' name='listingID' value=".$row['listingID']." />
+        <input type='submit' name='submit' value='View More' />
         </form></td>
-      </tr>";
+      </tr>
+
+      ";
   }
   echo "</table>";
 ?>

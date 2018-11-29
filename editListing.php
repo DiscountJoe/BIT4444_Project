@@ -1,13 +1,4 @@
 <?php
-  $destination = "";
-  $dateListed = "";
-  $rate = "";
-  $weight = "";
-  $err = false;
-  $origin = "";
-  $miles = "";
-  $clientID="200";
-
   if (isset($_POST["submit"])) {
     if(isset($_POST["destination"])) $destination = $_POST["destination"];
     if(isset($_POST["dateListed"])) $dateListed = $_POST["dateListed"];
