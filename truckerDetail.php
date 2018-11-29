@@ -87,7 +87,7 @@ session_start();
     <td>Driver CDL</td>
     <td>".$row['CDL']."</td>
   </tr>";
-  if($row['state']!=="f"||$row['state']!=="IT")
+  if($row['state']!=="F"||$row['state']!=="IT")
   echo
   "<tr>
     <td><form method='post'
