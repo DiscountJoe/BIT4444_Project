@@ -1,3 +1,13 @@
+<?php
+require_once("db.php");
+session_start();
+//$clientName=$_SESSION['clientName'];
+//$clientID=$_SESSION['clientID'];
+if (isset($_POST["submit"])) {
+    if(isset($_POST["listingID"])) $_SESSION['listingID']=$_POST["listingID"];
+    Header("Location:  moderationDetail.php");
+  }
+?>
 <!doctype html>
 <html>
 <head>
@@ -10,13 +20,11 @@
  <a href="moderationNew.php">Moderation</a>
 </nav>
 <br>
-
-<form method="post" onclick ="<?php ?>" >
 </html>
 
 <?php
-require_once("db.php");
-session_start();
+
+//session_start();
 
 //$clientName=$_SESSION['clientName'];
 //$clientID=$_SESSION['clientID'];
@@ -47,9 +55,12 @@ echo
         <td>".$row['weight']."</td>
         <td>".$row['rate']."</td>
         <td>".$row['miles']."</td>
-        <td>".$row['ratePerMile']."</td>
-
-      </tr>";
+        <td>".$row['ratePerMile']."</td>";
+        echo"<td><form method='post'
+            action='".$_SERVER['PHP_SELF']."'>
+            <input type='hidden' name='listingID' value=".$row['listingID']." />
+            <input type='submit' name='submit' value='View Detail' />
+            </form></td></tr>";
   }
   echo "</table>"
 
