@@ -17,7 +17,10 @@ if (isset($_POST["submit"])) {
   <nav>
     <img src="reynholm.jpg" height="5%" width="5%">
     <a href="adminLanding.php">Home</a> |
- <a href="moderationNew.php">Moderation</a>
+ <a href="moderationNew.php">Moderation</a> |
+ <a href="adminViewListings.php">View All Listings</a> |
+ <a href="adminViewCurrentListings.php">View All CURRENT Listings</a>
+
 </nav>
 <br>
 </html>
