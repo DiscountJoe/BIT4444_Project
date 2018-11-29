@@ -1,4 +1,6 @@
-<!doctype html>
+<?php
+  session_start();
+?>
 <html>
 <head>
   <title>Success</title>
@@ -8,12 +10,12 @@
     <img src="reynholm.jpg" height="5%" width="5%">
     <a href="clientLanding.php">Home</a>
       <a href="clientListingsPage.php">All Loads</a>
-      <a href="clientListingsPage.php">My Current Loads</a>
-      <a href="clientListingsPage.php">My Past Loads</a>
+      <a href="clientCurrentLoads.php">My Current Loads</a>
+      <a href="clientPastLoads.php">My Past Loads</a>
 </nav>
   <?php
 
-    session_start();
+
     $destination = $_SESSION["destination"];
     $dateListed = $_SESSION["dateListed"];
     $weight = $_SESSION["weight"];
@@ -23,7 +25,6 @@
     $miles=$_SESSION['miles'];
     $ratePerMile=($rate/$miles);
     $listingID=$_SESSION['listingID'];
-    echo $listingID;
     $state = "NA";//needs approval
     $CDL = "N/A";//not applicable
     $dateFufilled = "N/A";

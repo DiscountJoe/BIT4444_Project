@@ -27,7 +27,7 @@ if (isset($_POST["submit"])) {
     <td>Origin:</td>
     <td><?php
     require_once("db.php");
-    $sql="select distinct origin from listing where clientID='$clientID'";
+    $sql="select distinct origin from listing where clientID='$clientID' and (state='NA' or state='IT' or state='L')";
     $result = $mydb->query($sql);
     echo "<select id='originDropdown'>";
     while($row=mysqli_fetch_array($result)){
@@ -45,7 +45,7 @@ if (isset($_POST["submit"])) {
     <td>Destination:</td>
     <td><?php
     require_once("db.php");
-    $sql="select distinct destination from listing where clientID='$clientID'";
+    $sql="select distinct destination from listing where clientID='$clientID' and (state='NA' or state='IT' or state='L')";
     $result = $mydb->query($sql);
     echo "<select id='destinationDropdown'>";
     while($row=mysqli_fetch_array($result)){
@@ -68,9 +68,10 @@ if (isset($_POST["submit"])) {
     <td></td>
   </tr>
 </table>
+<div id='contentArea'></div>
 
 <?php
-$sql = "select * from listing where clientID='$clientID' and clientName='$clientName'";
+$sql = "select * from listing where clientID='$clientID' and (state='NA' or state='IT' or state='L')";
 $result = $mydb->query($sql);
 echo
 "<table>
@@ -117,9 +118,8 @@ echo
       ";
   }
   echo "</table>";
-?>
 
-<div id='contentArea'></div>
+?>
 <p><a href="logout.php">Click here to log out</a></p>
 
 </body>

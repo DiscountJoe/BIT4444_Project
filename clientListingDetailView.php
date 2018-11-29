@@ -1,4 +1,6 @@
-<!doctype html>
+<?php
+session_start();
+?>
 <html>
 <head>
   <title>Reynholm Industries</title>
@@ -8,13 +10,10 @@
     <img src="reynholm.jpg" height="5%" width="5%">
     <a href="clientLanding.php">Home</a>
       <a href="clientListingsPage.php">All Loads</a>
-      <a href="clientListingsPage.php">My Current Loads</a>
-      <a href="clientListingsPage.php">My Past Loads</a>
+      <a href="clientCurrentLoads.php">My Current Loads</a>
+      <a href="clientPastLoads.php">My Past Loads</a>
 </nav>
   <?php
-    //resume the session variable on this page
-    session_start();
-
     if (isset($_SESSION['listingID'])) $listingID=$_SESSION['listingID'];
 
     if (isset($_POST["edit"])) {
@@ -106,5 +105,6 @@ echo "</table>";
     }
 
    ?>
+   <p><a href="logout.php">Click here to log out</a></p>
 </body>
 </html>

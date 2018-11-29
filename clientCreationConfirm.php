@@ -1,16 +1,25 @@
-<!doctype html>
+<?php
+
+  session_start();
+  $email = $_SESSION["email"];
+  $password = $_SESSION["password"];
+  $baseLocation = $_SESSION["baseLocation"];
+  $clientName = $_SESSION["clientName"];
+
+?>
 <html>
 <head>
   <title>Success</title>
 </head>
 <body>
+  <nav>
+    <img src="reynholm.jpg" height="5%" width="5%">
+    <a href="clientLanding.php">Home</a>
+      <a href="clientListingsPage.php">All Loads</a>
+      <a href="clientCurrentLoads.php">My Current Loads</a>
+      <a href="clientPastLoads.php">My Past Loads</a>
+</nav>
   <?php
-    session_start();
-    $email = $_SESSION["email"];
-    $password = $_SESSION["password"];
-    $baseLocation = $_SESSION["baseLocation"];
-    $clientName = $_SESSION["clientName"];
-
     require_once("db.php");
 
     $sql = "insert into client (clientName, email, password, baseLocation)
