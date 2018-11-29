@@ -8,8 +8,10 @@
   <?php
     echo "<p>Goodbye!</p>";
     echo "You have successfully logged out. Please <a href='who.html'>click here to login again</a>";
-  ?>
 
+    session_start();
+    if (isset($_SESSION['listingID'])) $listingID=$_SESSION['listingID'];
+  ?>
 
 </body>
 </html>

@@ -5,7 +5,7 @@ session_start();
 //$clientID=$_SESSION['clientID'];
 if (isset($_POST["submit"])) {
     if(isset($_POST["listingID"])) $_SESSION['listingID']=$_POST["listingID"];
-    Header("Location:  disapprove.php");
+    Header("Location:  cancelListing.php");
   }
   if (isset($_POST["approve"])) {
       if(isset($_POST["listingID"])) $_SESSION['listingID']=$_POST["listingID"];

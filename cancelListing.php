@@ -5,7 +5,7 @@
 </head>
 <body>
   <?php
-    $state = "L";//cancelled
+    $state = "C";//cancelled
     $CDL = "N/A";//not applicable
     $dateFufilled = "N/A";//not applicable
 
@@ -42,7 +42,7 @@
            $sql2 = "select * from listing where listingID=$listingID";
                 $result=$mydb->query($sql2);
                 while($row = mysqli_fetch_array($result)){
-           echo "<p>An edited Listing is now approved! And that's tea, sis!:</p></br>";
+           echo "<p>An edited Listing is now cancelled. And that's tea, sis!:</p></br>";
 
            echo "<table>
               <tr>
