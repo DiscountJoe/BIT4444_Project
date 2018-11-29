@@ -7,7 +7,7 @@ if (isset($_POST["submit"])) {
 ?>
 <html>
 <head>
-  <title>Load Board</title>
+  <title>My Loads in Transit</title>
 </head>
 <body>
   <nav>
@@ -23,9 +23,9 @@ if (isset($_POST["submit"])) {
 <?php
 require_once("db.php");
 
-//$CDL=$_SESSION['CDL'];
+$CDL=$_SESSION['CDL'];
 //$clientID=$_SESSION['truckerID'];
-$sql = "select * from listing where state='L'";
+$sql = "select * from listing where CDL='$CDL' and state='IT'";
 $result = $mydb->query($sql);
 echo
 "<table>

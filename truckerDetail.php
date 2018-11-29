@@ -17,8 +17,10 @@ session_start();
 <body>
   <nav>
     <img src="reynholm.jpg" height="5%" width="5%">
-    <a href="truckerLanding.php">Home</a> |
- <a href="displayListings.php">All Loads</a>
+    <a href="truckerLanding.php">Home</a>
+      <a href="displayListings.php">All Loads</a>
+      <a href="myLoads.php">My Current Loads</a>
+      <a href="pastLoads.php">My Past Loads</a>
 </nav>
   <?php
     //resume the session variable on this page
