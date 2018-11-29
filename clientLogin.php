@@ -49,7 +49,7 @@
         $_SESSION["clientName"] = $row["clientName"];
        setcookie("password", $password, time()+86400*3);
 
-        Header("Location:clientLanding.php");
+        Header("Location:clientListingsPage.php");
       }
     }
   }
