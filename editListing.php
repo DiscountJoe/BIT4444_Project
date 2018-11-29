@@ -1,28 +1,31 @@
 <?php
+  session_start();
+  require_once("db.php");
+  if(isset($_SESSION["listingID"])) $listingID = $_SESSION["listingID"];
+  $err=false;
+  $sql="select * from listing where listingID='$listingID'";
+  $result = $mydb->query($sql);
+  while($row=mysqli_fetch_array($result)){
+    $origin=$row['origin'];
+    $destination=$row['destination'];
+    $dateListed=$row['dateListed'];
+    $rate=$row['rate'];
+    $miles=$row['miles'];
+    $weight=$row['weight'];
+  }
   if (isset($_POST["submit"])) {
-    if(isset($_POST["destination"])) $destination = $_POST["destination"];
-    if(isset($_POST["dateListed"])) $dateListed = $_POST["dateListed"];
-    if(isset($_POST["rate"])) $rate = $_POST["rate"];
-    if(isset($_POST["weight"])) $weight = $_POST["weight"];
-    if(isset($_POST["origin"])) $origin = $_POST["origin"];
-    if(isset($_POST["miles"])) $miles = $_POST["miles"];
-    if(isset($_POST["clientName"])) $clientName = $_POST["clientName"];
-    if(isset($_SESSION["clientID"])) $clientID = $_SESSION["clientID"];
+
 
     if (!empty($destination) && !empty($dateListed) && !empty($weight)
-        && !empty($origin))
+        && !empty($origin) && !empty($rate))
     {
-      session_start();
-      $_SESSION["origin"] = $origin;
-      $_SESSION["destination"] = $destination;
-      $_SESSION["dateListed"] = $dateListed;
-      $_SESSION["rate"] = $rate;
-      $_SESSION["weight"] = $weight;
-      $_SESSION["clientID"] = $clientID;
-      $_SESSION['miles']= $miles;
-      $_SESSION['clientName']=$clientName;
-
-      header("Location: listingCreationConfirm.php");
+     if(isset($_POST["origin"])) $_SESSION["origin"] = $_POST["origin"];
+      if(isset($_POST["destination"])) $_SESSION["destination"] = $_POST["destination"];
+      if(isset($_POST["dateListed"])) $_SESSION["dateListed"] = $_POST["dateListed"];
+      if(isset($_POST["rate"])) $_SESSION["rate"] = $_POST["rate"];
+      if(isset($_POST["miles"])) $_SESSION["miles"] = $_POST["miles"];
+      if(isset($_POST["weight"])) $_SESSION["weight"] = $_POST["weight"];
+      header("Location: editListingConfirm.php");
     }
     else
     {
@@ -31,17 +34,26 @@
   }
 ?>
 
-<!doctype html>
 <html>
+<script>
+document.getElementById('datePicker').value = new Date().toDateInputValue();
+</script>
 <head>
-  <title>Create Client</title>
+  <title>Edit Listing</title>
   <style>
     .errlabel {color:red;}
   </style>
 </head>
 <body>
+  <nav>
+    <img src="reynholm.jpg" height="5%" width="5%">
+    <a href="clientLanding.php">Home</a>
+      <a href="clientListingsPage.php">All Loads</a>
+      <a href="clientListingsPage.php">My Current Loads</a>
+      <a href="clientListingsPage.php">My Past Loads</a>
+</nav>
   <form method="post" action="<?php echo $_SERVER['PHP_SELF']?>">
-    <label>origin:
+     <label>origin:
       <input type="text" name="origin" value="<?php echo $origin; ?>" />
       <?php
         if ($err && empty($origin)) {
@@ -61,7 +73,7 @@
     <br />
 
     <label>dateListed:
-      <input type="date" name="dateListed" value="<?php echo $dateListed; ?>" />
+      <input type="date" name="dateListed" id="datePicker" />
       <?php
         if ($err && empty($dateListed)) {
           echo "<label class='errlabel'>Please enter a dateListed.</label>";
@@ -98,6 +110,8 @@
       ?>
     </label>
     <br />
-    <input type="submit" name="submit" value="Submit" />
+    <input type="submit" name="submit" value="submit" />
   </form>
 </body>
+
+</html>

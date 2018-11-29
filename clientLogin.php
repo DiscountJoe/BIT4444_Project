@@ -64,7 +64,13 @@
   </style>
 </head>
 <body>
-  <img src="reynholm.jpg" height="5%" width="5%">
+  <nav>
+    <img src="reynholm.jpg" height="5%" width="5%">
+    <a href="clientLanding.php">Home</a>
+      <a href="clientListingsPage.php">All Loads</a>
+      <a href="clientListingsPage.php">My Current Loads</a>
+      <a href="clientListingsPage.php">My Past Loads</a>
+</nav>
   <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" >
     <table>
       <tr>

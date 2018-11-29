@@ -6,17 +6,27 @@
 <body>
   <nav>
     <img src="reynholm.jpg" height="5%" width="5%">
-    <a href="landing.php">Home</a> |
- <a href="timetable.php">Moderation</a> |
- <a href="record.php">Your Record</a> |
- <a href="advising.php">Advising</a> |
+    <a href="clientLanding.php">Home</a>
+      <a href="clientListingsPage.php">All Loads</a>
+      <a href="clientListingsPage.php">My Current Loads</a>
+      <a href="clientListingsPage.php">My Past Loads</a>
 </nav>
   <?php
     //resume the session variable on this page
     session_start();
+
     if (isset($_SESSION['listingID'])) $listingID=$_SESSION['listingID'];
 
-    echo $listingID;
+    if (isset($_POST["edit"])) {
+      if(isset($_POST["listingID"])) $_SESSION['listingID']=$_POST["listingID"];
+
+        Header("Location:  editListing.php");
+      }
+      if (isset($_POST["cancel"])) {
+          if(isset($_POST["listingID"])) $_SESSION['listingID']=$_POST["listingID"];
+          Header("Location:  cancelListing.php");
+        }
+
     require_once("db.php");
     $sql="select distinct * from listing where listingID='$listingID'";
     $result = $mydb->query($sql);
@@ -79,14 +89,16 @@
   if($row['state']!=="f"||$row['state']!=="IT")
   echo
   "<tr>
-    <td><form method='post'
+    <td><form method='post' type=submit
         action='".$_SERVER['PHP_SELF']."'>
-          <input type='submit' name='submit' value='Edit Listing' />
+          <input type='submit' name='edit' value='Edit Listing' />
+          <input type='hidden' name='listingID' value='".$row['listingID']."' />
         </form>
     </td>
     <td><form method='post'
         action='".$_SERVER['PHP_SELF']."'>
-          <input type='submit' name='submit' value='Remove Listing' />
+          <input type='submit' name='cancel' value='Remove Listing' />
+          <input type='hidden' name='listingID' value='".$row['listingID']."' />
         </form>
     </td>
   </tr>";

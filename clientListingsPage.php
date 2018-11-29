@@ -13,6 +13,13 @@ if (isset($_POST["submit"])) {
   <title>Client Listings History</title>
 </head>
 <body>
+  <nav>
+    <img src="reynholm.jpg" height="5%" width="5%">
+    <a href="clientLanding.php">Home</a>
+      <a href="clientListingsPage.php">All Loads</a>
+      <a href="clientListingsPage.php">My Current Loads</a>
+      <a href="clientListingsPage.php">My Past Loads</a>
+</nav>
 <table>
   <tr>
     <td>Origin:</td>
@@ -99,7 +106,7 @@ echo
         elseif($row['state']=="L"){echo "<td>Listed</td>";}
         elseif($row['state']=="IT"){echo "<td>In Transit</td>";}
         elseif($row['state']=="F"){echo "<td>Fulfilled</td>";}
-        elseif($row['state']=="R"){echo "<td>Removed</td>";}
+        elseif($row['state']=="C"){echo "<td>Canceled</td>";}
 
     echo"<td><form method='post'
         action='".$_SERVER['PHP_SELF']."'>
