@@ -2,7 +2,7 @@
 session_start();
 if (isset($_POST["submit"])) {
     if(isset($_POST["listingID"])) $_SESSION['listingID']=$_POST["listingID"];
-    Header("Location:  truckerDetail.php");
+    Header("Location:  cancelListing.php");
   }
 ?>
 <html>
@@ -64,7 +64,7 @@ elseif($row['state']=="R"){echo "<td>Removed</td>";}
         echo"<td><form method='post'
         action='".$_SERVER['PHP_SELF']."'>
         <input type='text' name='listingID' value=".$lid." />
-        <input type='submit' name='submit' value='View Detail' />
+        <input type='submit' name='submit' value='Cancel' />
         </form></td>
       </tr>";
   }
