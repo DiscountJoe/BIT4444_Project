@@ -20,8 +20,8 @@ if (isset($_POST["submit"])) {
 <body>
   <nav>
     <img src="reynholm.jpg" height="5%" width="5%">
-    <a href="landing.php">Home</a> |
- <a href="timetable.php">Moderation</a>
+    <a href="adminLanding.php">Home</a> |
+ <a href="moderationNew.php">Moderation</a>
 </nav>
   <?php
     //resume the session variable on this page
