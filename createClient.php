@@ -2,25 +2,25 @@
   $email = "";
   $password = "";
   $passConfirm = "";
+  $type = "C";
+  $clientName ="";
   $baseLocation = "";
   $err = false;
-  $clientName = "";
 
   if (isset($_POST["submit"])) {
     if(isset($_POST["email"])) $email = $_POST["email"];
     if(isset($_POST["password"])) $password = $_POST["password"];
     if(isset($_POST["passConfirm"])) $passConfirm = $_POST["passConfirm"];
-    if(isset($_POST["baseLocation"])) $baseLocation = $_POST["baseLocation"];
     if(isset($_POST["clientName"])) $clientName = $_POST["clientName"];
+    if(isset($_POST["baseLocation"])) $baseLocation = $_POST["baseLocation"];
 
-    if (!empty($email) && !empty($password) && !empty($baseLocation) && !empty($clientName) && strcmp($passConfirm,$password))
+    if (!empty($email) && !empty($password) && !empty($passConfirm) && !empty($baseLocation) && !empty($clientName))
     {
       session_start();
-
-      $_SESSION["clientName"] = $clientName;
       $_SESSION["email"] = $email;
       $_SESSION["password"] = $password;
       $_SESSION["passConfirm"] = $passConfirm;
+      $_SESSION["clientName"] = $clientName;
       $_SESSION["baseLocation"] = $baseLocation;
       header("Location: clientCreationConfirm.php");
     }
@@ -32,7 +32,7 @@
 ?>
 
 <!doctype html>
-<html>
+
 <head>
   <title>Create Client</title>
   <style>
@@ -40,23 +40,10 @@
   </style>
 </head>
 <body>
-  <form method="post" action="<?php echo $_SERVER['PHP_SELF']?>">
-    <label>client name:
-      <input type="text" name="clientName" value="<?php echo $clientName; ?>" />
-      <?php
-        if ($err && empty($clientName)) {
-          echo "<label class='errlabel'>Please enter a valid client Name.</label>";
-        }
-      ?>
-    </label>
-    <br />
+  <form method="post" action="<?php echo $_SERVER['PHP_SELF']?>"
     <label>email:
       <input type="text" name="email" value="<?php echo $email; ?>" />
-      <?php
-        if ($err && empty($email)) {
-          echo "<label class='errlabel'>Please enter a valid email.</label>";
-        }
-      ?>
+
     </label>
     <br />
 
@@ -74,7 +61,17 @@
       <input type="text" name="passConfirm" value="<?php echo $passConfirm; ?>" />
       <?php
         if ($err && empty($passConfirm)) {
-          echo "<label class='errlabel'>Please enter the same password twice.</label>";
+          echo "<label class='errlabel'>Please enter a password.</label>";
+        }
+      ?>
+    </label>
+    <br />
+
+    <label>Confirm password:
+      <input type="text" name="clientName" value="<?php echo $clientName; ?>" />
+      <?php
+        if ($err && empty($clientName)) {
+          echo "<label class='errlabel'>Please enter a client name.</label>";
         }
       ?>
     </label>
@@ -89,6 +86,6 @@
       ?>
     </label>
     <br />
+
     <input type="submit" name="submit" value="Submit" />
-  </form>
 </body>
