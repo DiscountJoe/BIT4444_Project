@@ -1,10 +1,10 @@
 <?php
-  $email = 0;
+  $email = "";
   $password = "";
+  $confirmPass = "";
   $firstName = "";
+  $lastName = "";
   $type = "A";
-  $lastName = 0;
-  $code = "";
   $err = false;
 
   if (isset($_POST["submit"])) {
@@ -12,16 +12,14 @@
     if(isset($_POST["password"])) $password = $_POST["password"];
     if(isset($_POST["firstName"])) $firstName = $_POST["firstName"];
     if(isset($_POST["lastName"])) $lastName = $_POST["lastName"];
-    if(isset($_POST["code"])) $code = $_POST["code"];
 
-    if (!empty($email) && !empty($password) && !empty($lastName) && !empty($baseLocation) && !empty($userName) && !empty($code))
+    if (!empty($email) && !empty($password) && !empty($firstName) && !empty($lastName))
     {
       session_start();
       $_SESSION["email"] = $email;
       $_SESSION["password"] = $password;
       $_SESSION["firstName"] = $firstName;
       $_SESSION["lastName"] = $lastName;
-      $_SESSION["code"] = $code;
       header("Location: adminCreationConfirm.php");
     }
     else
@@ -34,7 +32,7 @@
 <!doctype html>
 
 <head>
-  <title>Create Client</title>
+  <title>Create Admin</title>
   <style>
     .errlabel {color:red;}
   </style>
@@ -67,42 +65,21 @@
     </label>
     <br />
 
-    <label>Client ID:
-      <select name="lastName">
-        <?php
-          for ($i=1; $i <= 3 ; $i++) {
-            echo "<option>$i</option>";
-          }
-        ?>
-      </select>
-    </label>
-    <br />
-
-    <label>Base Location:
-      <input type="text" name="baseLocation" value="<?php echo $baseLocation; ?>" />
+    <label>First Name:
+      <input type="text" name="$firstName" value="<?php echo $firstName; ?>" />
       <?php
-        if ($err && empty($baseLocation)) {
+        if ($err && empty($firstName)) {
           echo "<label class='errlabel'>Please enter a Location.</label>";
         }
       ?>
     </label>
     <br />
 
-    <label>User Name:
-      <input type="text" name="userName" value="<?php echo $userName; ?>" />
+    <label>Last Name:
+      <input type="text" name="lastName" value="<?php echo $lastName; ?>" />
       <?php
-        if ($err && empty($userName)) {
+        if ($err && empty($lastName)) {
           echo "<label class='errlabel'>Please enter a valid userName.</label>";
-        }
-      ?>
-    </label>
-    <br />
-
-    <label>Code:
-      <input type="text" name="code" value="<?php echo $code; ?>" />
-      <?php
-        if ($err && empty($code)) {
-          echo "<label class='errlabel'>Please enter a valid code.</label>";
         }
       ?>
     </label>

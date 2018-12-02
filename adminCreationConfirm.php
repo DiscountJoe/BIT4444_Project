@@ -19,13 +19,13 @@
                 $result=$mydb->query($sql2);
                 while($row = mysqli_fetch_array($result)){
            echo "<p>A new product record has been added with information:</p></br>";
-               echo "<table><thead><th>lastName</th><th>email</th><th>password</th><th>clientID</th><th>firstName</th></thead>";
-               echo "<td>".$row['lastName']."</td><td>$email</td><td>$password</td><td>"."</td><td>$firstName</td></table>";
+               echo "<table><thead><th>Admin ID</th><th>Email</th><th>Password</th><th>First</th><th>Last Name</th></thead>";
+               echo "<td>".$row['adminID']."</td><td>$email</td><td>$password</td><td>"."</td><td>$firstName</td></table>";
                    }
          }
          else
          {
-           $sql= "delete from client where email=$email AND password=$password AND firstName=$firstName";
+           $sql= "delete from admin where email=$email AND password=$password AND firstName=$firstName";
            $result=$mydb->query($sql);
            echo "an error occured, please try again";
          }
