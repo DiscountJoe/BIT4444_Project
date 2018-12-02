@@ -63,7 +63,7 @@ elseif($row['state']=="F"){echo "<td>Fulfilled</td>";}
 elseif($row['state']=="R"){echo "<td>Removed</td>";}
         echo"<td><form method='post'
         action='".$_SERVER['PHP_SELF']."'>
-        <input type='text' name='listingID' value=".$lid." />
+        <input type='hidden' name='listingID' value=".$lid." />
         <input type='submit' name='submit' value='Cancel' />
         </form></td>
       </tr>";

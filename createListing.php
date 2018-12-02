@@ -49,6 +49,14 @@
   </style>
 </head>
 <body>
+  <nav>
+    <img src="reynholm.jpg" height="5%" width="5%">
+    <a href="clientLanding.php">Home</a>
+      <a href="clientListingsPage.php">All Company Loads</a>
+      <a href="clientCurrentLoads.php">My Current Loads</a>
+      <a href="clientPastLoads.php">My Past Loads</a>
+      <a href="createListing.php">Create Listing</a>
+</nav>
   <form method="post" action="<?php echo $_SERVER['PHP_SELF']?>">
     <label>origin:
       <input type="text" name="origin" value="<?php echo $origin; ?>" />
@@ -70,7 +78,7 @@
     <br />
 
     <label>dateListed:
-      <input type="date" name="dateListed" value="<?php echo $dateListed; ?>" />
+      <input type="date" name="dateListed" value="<?php echo date('Y-m-d'); ?>"min="<?php echo date('Y-m-d'); ?>" max="2018-12-31"/>
       <?php
         if ($err && empty($dateListed)) {
           echo "<label class='errlabel'>Please enter a dateListed.</label>";

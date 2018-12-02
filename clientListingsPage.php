@@ -1,5 +1,7 @@
 <?php
 session_start();
+
+require_once("db.php");
 if(isset($_SESSION['clientName'])) {$clientName=$_SESSION['clientName'];
 }else{Header("Location:  clientLogin.php");}
 if(isset($_SESSION['clientID'])) {$clientID=$_SESSION['clientID'];
@@ -9,6 +11,7 @@ if (isset($_POST["submit"])) {
     if(isset($_POST["listingID"])) $_SESSION['listingID']=$_POST["listingID"];
     Header("Location:  clientListingDetailView.php");
   }
+
 ?>
 <html>
 <head>
@@ -18,15 +21,128 @@ if (isset($_POST["submit"])) {
   <nav>
     <img src="reynholm.jpg" height="5%" width="5%">
     <a href="clientLanding.php">Home</a>
-      <a href="clientListingsPage.php">All Loads</a>
+      <a href="clientListingsPage.php">All Company Loads</a>
       <a href="clientCurrentLoads.php">My Current Loads</a>
       <a href="clientPastLoads.php">My Past Loads</a>
+      <a href="createListing.php">Create Listing</a>
 </nav>
+<body>
+  <div id="pieChart"></div>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/d3/4.7.2/d3.min.js"></script>
+<script src="d3pie.min.js"></script>
+<script>
+var pie = new d3pie("pieChart", {
+	"header": {
+		"title": {
+			"text": "All <?php echo $clientName ?> Listings",
+			"fontSize": 20,
+			"font": "open sans"
+		},
+		"subtitle": {
+			"text": "by fulfillment status",
+			"color": "#999999",
+			"font": "open sans"
+		},
+		"titleSubtitlePadding": 9
+	},
+	"footer": {
+		"color": "#999999",
+		"fontSize": 10,
+		"font": "open sans",
+		"location": "bottom-left"
+	},
+	"size": {
+		"canvasWidth": 590,
+		"pieInnerRadius": "40%",
+		"pieOuterRadius": "63%"
+	},
+	"data": {
+		"sortOrder": "value-desc",
+		"content": [
+			{
+				"label": "Needs Approval",
+				"value": <?php $sql=("select count(state) as total from listing where clientID='$clientID' and state='NA'");
+        $result = $mydb->query($sql);
+        while($row=mysqli_fetch_array($result)){echo $row['total'];}?>,
+				"color": "#1c6898"
+			},
+			{
+				"label": "Listed",
+				"value": <?php $sql=("select count(state) as total from listing where clientID='$clientID' and state='L'");
+        $result = $mydb->query($sql);
+        while($row=mysqli_fetch_array($result)){echo $row['total'];}?>,
+				"color": "#a39216"
+			},
+			{
+				"label": "In-Transit",
+				"value": <?php $sql=("select count(state) as total from listing where clientID='$clientID' and state='IT'");
+        $result = $mydb->query($sql);
+        while($row=mysqli_fetch_array($result)){echo $row['total'];}?>,
+				"color": "#1628a4"
+			},
+			{
+				"label": "Fulfilled",
+				"value": <?php $sql=("select count(state) as total from listing where clientID='$clientID' and state='F'");
+        $result = $mydb->query($sql);
+        while($row=mysqli_fetch_array($result)){echo $row['total'];}?>,
+				"color": "#12bd09"
+			},
+			{
+				"label": "Cancelled",
+				"value": <?php $sql=("select count(state) as total from listing where clientID='$clientID' and state='C'");
+        $result = $mydb->query($sql);
+        while($row=mysqli_fetch_array($result)){echo $row['total'];}?>,
+				"color": "#a11818"
+			}
+		]
+	},
+	"labels": {
+		"outer": {
+			"pieDistance": 32
+		},
+		"inner": {
+			"hideWhenLessThanPercentage": 3
+		},
+		"mainLabel": {
+			"fontSize": 11
+		},
+		"percentage": {
+			"color": "#ffffff",
+			"decimalPlaces": 0
+		},
+		"value": {
+			"color": "#adadad",
+			"fontSize": 11
+		},
+		"lines": {
+			"enabled": true
+		},
+		"truncation": {
+			"enabled": true
+		}
+	},
+	"effects": {
+		"pullOutSegmentOnClick": {
+			"effect": "linear",
+			"speed": 400,
+			"size": 8
+		}
+	},
+	"misc": {
+		"gradient": {
+			"enabled": true,
+			"percentage": 100
+		}
+	}
+});
+</script>
+
+
 <table>
   <tr>
     <td>Origin:</td>
     <td><?php
-    require_once("db.php");
     $sql="select distinct origin from listing where clientID='$clientID'";
     $result = $mydb->query($sql);
     echo "<select id='originDropdown'>";
@@ -44,7 +160,6 @@ if (isset($_POST["submit"])) {
   <tr>
     <td>Destination:</td>
     <td><?php
-    require_once("db.php");
     $sql="select distinct destination from listing where clientID='$clientID'";
     $result = $mydb->query($sql);
     echo "<select id='destinationDropdown'>";
@@ -73,7 +188,7 @@ if (isset($_POST["submit"])) {
 $sql = "select * from listing where clientID='$clientID' and clientName='$clientName'";
 $result = $mydb->query($sql);
 echo
-"<table>
+"<div><table>
     <tr>
       <th>  ListingID </th>
       <th>  Client Name </th>
@@ -116,7 +231,7 @@ echo
 
       ";
   }
-  echo "</table>";
+  echo "</div></table>";
 ?>
 
 <div id='contentArea'></div>

@@ -18,9 +18,10 @@ if (isset($_POST["submit"])) {
   <nav>
     <img src="reynholm.jpg" height="5%" width="5%">
     <a href="clientLanding.php">Home</a>
-      <a href="clientListingsPage.php">All Loads</a>
-      <a href="clientCurrentLoads.php">My Current Loads</a>
-      <a href="clientPastLoads.php">My Past Loads</a>
+      <a href="clientListingsPage.php">All Company Loads</a>||
+      <a href="clientCurrentLoads.php">My Current Loads</a>||
+      <a href="clientPastLoads.php">My Past Loads</a>||
+      <a href="createListing.php">Create Listing</a>||
 </nav>
 <table>
   <tr>

@@ -12,6 +12,7 @@ session_start();
       <a href="clientListingsPage.php">All Loads</a>
       <a href="clientCurrentLoads.php">My Current Loads</a>
       <a href="clientPastLoads.php">My Past Loads</a>
+      <a href="createListing.php">Create Listing</a>
 </nav>
   <?php
     if (isset($_SESSION['listingID'])) $listingID=$_SESSION['listingID'];
