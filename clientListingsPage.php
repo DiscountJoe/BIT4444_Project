@@ -32,11 +32,11 @@ if (isset($_POST["submit"])) {
   <li><a href="createListing.php">Create Listing</a></li>
 </ul>
 
-  <div id="pieChart" style="margin: auto;
+  <p><div id="pieChart" style="margin: auto;
   background-color:white;
   width: 50%;
   border: 3px solid black;
-  padding: 10px;"></div>
+  padding: 10px;"></div></p>
 
 <script src="//cdnjs.cloudflare.com/ajax/libs/d3/4.7.2/d3.min.js"></script>
 <script src="d3pie.min.js"></script>

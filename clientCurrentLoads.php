@@ -15,6 +15,7 @@ if (isset($_POST["submit"])) {
   <title>Reynholm Industries</title>
 
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+   <link rel="stylesheet" href="stylesheet.css" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
@@ -27,7 +28,8 @@ if (isset($_POST["submit"])) {
   <li><a href="clientPastLoads.php">Past Loads</a></li>
   <li><a href="createListing.php">Create Listing</a></li>
 </ul>
-<table>
+<br>
+<div><table>
   <tr>
     <td>Origin:</td>
     <td><?php
@@ -72,14 +74,15 @@ if (isset($_POST["submit"])) {
     <td></td>
     <td></td>
   </tr>
-</table>
-<div id='contentArea'></div>
+</table></div>
+<br>
+
 
 <?php
 $sql = "select * from listing where clientID='$clientID' and (state='NA' or state='IT' or state='L')";
 $result = $mydb->query($sql);
 echo
-"<table>
+"<div><table>
     <tr>
       <th>  ListingID </th>
       <th>  Client Name </th>
@@ -122,7 +125,7 @@ echo
 
       ";
   }
-  echo "</table>";
+  echo "</table></div>";
 
 ?>
 <p><a href="logout.php">Click here to log out</a></p>
