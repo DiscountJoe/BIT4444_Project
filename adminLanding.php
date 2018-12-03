@@ -14,6 +14,7 @@
   <li class="active"><a href="clientLanding.php">Home</a></li>
   <li><a href="adminViewListings.php">View Listings</a></li>
   <li><a href="moderationNew.php">Moderation</a></li>
+  <li><a href="adminViewCurrentListings.php">View Current Listings</a></li>
 </ul>
 
   <?php

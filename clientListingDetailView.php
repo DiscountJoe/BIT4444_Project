@@ -6,6 +6,7 @@ session_start();
   <title>Reynholm Industries</title>
 
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="stylesheet.css" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
@@ -36,7 +37,7 @@ session_start();
     $result = $mydb->query($sql);
     while($row=mysqli_fetch_array($result)){
       $Selection=$row["origin"];
-      echo "<table>
+      echo "<div><table>
       <tr>
       <th>Listing Information</th>
       <th></th>
@@ -47,7 +48,7 @@ session_start();
         elseif($row['state']=="L"){echo "<td>Listed</td>";}
         elseif($row['state']=="IT"){echo "<td>In Transit</td>";}
         elseif($row['state']=="F"){echo "<td>Fulfilled</td>";}
-        elseif($row['state']=="R"){echo "<td>Removed</td>";}
+        elseif($row['state']=="C"){echo "<td>Cancelled</td>";}
 
       echo "</tr>
   <tr>
@@ -106,7 +107,7 @@ session_start();
         </form>
     </td>
   </tr>";
-echo "</table>";
+echo "</table></div>";
     }
 
    ?>
