@@ -8,7 +8,7 @@
     $state = "NA";//needs approval
     $CDL = "N/A";//not applicable
     $dateFufilled = "N/A";//not applicable
-
+//hhhhhh
     session_start();
     $destination = $_SESSION["destination"];
     $dateListed = $_SESSION["dateListed"];
