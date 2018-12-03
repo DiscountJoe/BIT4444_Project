@@ -10,17 +10,17 @@ session_start();
   <title>Reynholm Industries</title>
 
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+   <link rel="stylesheet" href="stylesheet.css" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
       <img src="reynholm.jpg" height=5% width=5% />
   <ul class="nav nav-tabs">
-  <li class="active"><a href="clientLanding.php">Home</a></li>
-  <li><a href="clientListingsPage.php">Your Listings</a></li>
-  <li><a href="clientCurrentLoads.php">Loads in Transit</a></li>
-  <li><a href="clientPastLoads.php">Past Loads</a></li>
-  <li><a href="createListing.php">Create Listing</a></li>
+  <li><a href="adminLanding.php">Home</a></li>
+  <li class="active"><a href="aminViewListings.php">View Listings</a></li>
+  <li><a href="moderationNew.php">Moderation</a></li>
+
 </ul>
 </body>
 </html>
@@ -33,7 +33,7 @@ require_once("db.php");
 $sql = "select * from listing";
 $result = $mydb->query($sql);
 echo
-"<table>
+"</br><div><table>
     <tr>
     <th>  ListingID </th>
     <th>  Client Name </th>
@@ -65,7 +65,7 @@ echo
 elseif($row['state']=="L"){echo "<td>Listed</td>";}
 elseif($row['state']=="IT"){echo "<td>In Transit</td>";}
 elseif($row['state']=="F"){echo "<td>Fulfilled</td>";}
-elseif($row['state']=="R"){echo "<td>Removed</td>";}
+elseif($row['state']=="C"){echo "<td>Cancelled</td>";}
       /*  echo"<td><form method='post'
         action='".$_SERVER['PHP_SELF']."'>
         <input type='text' name='listingID' value=".$lid." />
@@ -73,5 +73,5 @@ elseif($row['state']=="R"){echo "<td>Removed</td>";}
         </form></td>
       </tr>"; */
   }
-  echo "</table>";
+  echo "</table></div>";
 ?>

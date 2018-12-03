@@ -1,3 +1,27 @@
-table{
+body{
+  background-color: slategrey;
+}
 
+ul {
+  background-color:white;
+  text-decoration-color: black;
+}
+
+div {
+   margin: auto;
+   background-color:white;
+   border: 3px solid black;
+   padding: 10px;
+}
+
+.pieChart {
+   margin: auto;
+   background-color:white;
+   width: 50%;
+   border: 3px solid black;
+   padding: 10px;
+}
+
+  table, th, td {
+   border: 1px solid black;
 }

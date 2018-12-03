@@ -15,19 +15,28 @@ if (isset($_POST["submit"])) {
 ?>
 <html>
 <head>
-  <title>Client Listings History</title>
+  <title>Reynholm Industries</title>
+
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+   <link rel="stylesheet" href="stylesheet.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-  <nav>
-    <img src="reynholm.jpg" height="5%" width="5%">
-    <a href="clientLanding.php">Home</a>
-      <a href="clientListingsPage.php">All Company Loads</a>
-      <a href="clientCurrentLoads.php">My Current Loads</a>
-      <a href="clientPastLoads.php">My Past Loads</a>
-      <a href="createListing.php">Create Listing</a>
-</nav>
-<body>
-  <div id="pieChart"></div>
+      <img src="reynholm.jpg" height=5% width=5% />
+  <ul class="nav nav-tabs">
+  <li><a href="clientLanding.php">Home</a></li>
+  <li class="active"><a href="clientListingsPage.php">Your Listings</a></li>
+  <li><a href="clientCurrentLoads.php">Loads in Transit</a></li>
+  <li><a href="clientPastLoads.php">Past Loads</a></li>
+  <li><a href="createListing.php">Create Listing</a></li>
+</ul>
+
+  <div id="pieChart" style="margin: auto;
+  background-color:white;
+  width: 50%;
+  border: 3px solid black;
+  padding: 10px;"></div>
 
 <script src="//cdnjs.cloudflare.com/ajax/libs/d3/4.7.2/d3.min.js"></script>
 <script src="d3pie.min.js"></script>
