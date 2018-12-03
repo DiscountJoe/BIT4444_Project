@@ -3,7 +3,12 @@ session_start();
 
 if(isset($_SESSION['clientName'])) $clientName=$_SESSION['clientName'];
 if(isset($_SESSION['clientID'])) $clientID=$_SESSION['clientID'];
-require_once("db.php")
+require_once("db.php");
+
+if (isset($_POST["submit"])) {
+    if(isset($_POST["listingID"])) $_SESSION['listingID']=$_POST["listingID"];
+    Header("Location:  clientListingDetailView.php");
+  }
 ?>
 
 <html lang="en" dir="ltr">
@@ -16,7 +21,7 @@ require_once("db.php")
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <meta charset="utf-8">
 </head>
-	<body>
+	<body onload="clearAll()">
 		<img src="reynholm.jpg" height=5% width=5% />
   	<ul class="nav nav-tabs">
   		<li><a href="clientLanding.php">Home</a></li>
@@ -27,7 +32,7 @@ require_once("db.php")
 		</ul>
     <div id="pieChart" style="margin: auto;
   background-color:white;
-  width: 50%;
+  width: 625px;
   border: 3px solid black;
   padding: 10px;"></div>
 
@@ -138,14 +143,37 @@ var pie = new d3pie("pieChart", {
 		}
 	}
 });
+function clearAll()
+{document.getElementById("originDropdown").innerHTML="<?php
+$sql="select distinct origin from listing where clientID='$clientID'";
+$result = $mydb->query($sql);
+echo "<select id='originDropdown' name='originDropdown'><option value=''></option>";
+while($row=mysqli_fetch_array($result)){
+  $Selection=$row["origin"];
+  echo "<option value = '$Selection'>$Selection</option>";
+}
+echo "</select>";
+?>";
+
+document.getElementById("destinationDropdown").innerHTML="<?php
+$sql="select distinct destination from listing where clientID='$clientID'";
+$result = $mydb->query($sql);
+echo "<select id='destinationDropdown'><option value=''></option>";
+while($row=mysqli_fetch_array($result)){
+  $Selection=$row["destination"];
+  echo "<option value = '$Selection'>$Selection</option>";
+}
+echo "</select>";
+?>"
+}
 </script>
-		<table>
+		<table style="left-margin:auto;right-margin:auto;display:block;">
 		  <tr>
 		    <td>Origin:</td>
 		    <td><?php
 		    $sql="select distinct origin from listing where clientID='$clientID'";
 		    $result = $mydb->query($sql);
-		    echo "<select id='originDropdown' name='originDropdown'>";
+		    echo "<select id='originDropdown' name='originDropdown'><option value=''></option>";
 		    while($row=mysqli_fetch_array($result)){
 		      $Selection=$row["origin"];
 		      echo "<option value = '$Selection'>$Selection</option>";
@@ -163,7 +191,7 @@ var pie = new d3pie("pieChart", {
 		    <td><?php
 		    $sql="select distinct destination from listing where clientID='$clientID'";
 		    $result = $mydb->query($sql);
-		    echo "<select id='destinationDropdown'>";
+		    echo "<select id='destinationDropdown'><option value=''></option>";
 		    while($row=mysqli_fetch_array($result)){
 		      $Selection=$row["destination"];
 		      echo "<option value = '$Selection'>$Selection</option>";
@@ -176,8 +204,8 @@ var pie = new d3pie("pieChart", {
 		    <td><input type="number" id="minWeight" name="minWeight" value="" /></td>
 		  </tr>
 		  <tr>
-        <td><button>Reset Search</button></td>
-		    <td><input type="hidden" name="state" id="state" value="" /></td>
+        <td><input type="hidden" name="state" id="state" value="" /></td>
+		    <td><button id="resetSearch" onclick="clearAll();">Reset Search</button></td>
 		    <td>Maximum Miles:</td>
 		    <td><input type="number" name="maxMiles" id="maxMiles" value="" /></td>
 		    <td>Minimum Miles:</td>
@@ -189,7 +217,7 @@ var pie = new d3pie("pieChart", {
 		<script>
     $(function(){
 		$("#originDropdown").change(function(){
-			$.ajax({url:"displayProducts.php?originDropdown="+
+			$.ajax({url:"clientListingsPageBackend.php?originDropdown="+
 			$("#originDropdown").val()+"&maxRPM="+
 			$("#maxRPM").val()+"&maxWeight="+
 			$("#maxWeight").val()+
@@ -210,7 +238,7 @@ var pie = new d3pie("pieChart", {
 		})
     $(function(){
 		$("#destinationDropdown").change(function(){
-			$.ajax({url:"displayProducts.php?originDropdown="+
+			$.ajax({url:"clientListingsPageBackend.php?originDropdown="+
 			$("#originDropdown").val()+"&maxRPM="+
 			$("#maxRPM").val()+"&maxWeight="+
 			$("#maxWeight").val()+
@@ -231,7 +259,7 @@ var pie = new d3pie("pieChart", {
 		})
     $(function(){
     $("#minRPM").change(function(){
-      $.ajax({url:"displayProducts.php?originDropdown="+
+      $.ajax({url:"clientListingsPageBackend.php?originDropdown="+
       $("#originDropdown").val()+"&maxRPM="+
       $("#maxRPM").val()+"&maxWeight="+
       $("#maxWeight").val()+
@@ -252,7 +280,7 @@ var pie = new d3pie("pieChart", {
     })
     $(function(){
     		$("#minWeight").change(function(){
-    			$.ajax({url:"displayProducts.php?originDropdown="+
+    			$.ajax({url:"clientListingsPageBackend.php?originDropdown="+
     			$("#originDropdown").val()+"&maxRPM="+
     			$("#maxRPM").val()+"&maxWeight="+
     			$("#maxWeight").val()+
@@ -273,7 +301,7 @@ var pie = new d3pie("pieChart", {
     		})
         $(function(){
         $("#minMiles").change(function(){
-          $.ajax({url:"displayProducts.php?originDropdown="+
+          $.ajax({url:"clientListingsPageBackend.php?originDropdown="+
           $("#originDropdown").val()+"&maxRPM="+
           $("#maxRPM").val()+"&maxWeight="+
           $("#maxWeight").val()+
@@ -294,7 +322,7 @@ var pie = new d3pie("pieChart", {
         })
         $(function(){
         $("#maxWeight").change(function(){
-          $.ajax({url:"displayProducts.php?originDropdown="+
+          $.ajax({url:"clientListingsPageBackend.php?originDropdown="+
           $("#originDropdown").val()+"&maxRPM="+
           $("#maxRPM").val()+"&maxWeight="+
           $("#maxWeight").val()+
@@ -315,7 +343,7 @@ var pie = new d3pie("pieChart", {
         })
         $(function(){
         $("#maxMiles").change(function(){
-          $.ajax({url:"displayProducts.php?originDropdown="+
+          $.ajax({url:"clientListingsPageBackend.php?originDropdown="+
           $("#originDropdown").val()+"&maxRPM="+
           $("#maxRPM").val()+"&maxWeight="+
           $("#maxWeight").val()+
@@ -336,7 +364,7 @@ var pie = new d3pie("pieChart", {
         })
         $(function(){
         $("#maxRPM").change(function(){
-          $.ajax({url:"displayProducts.php?originDropdown="+
+          $.ajax({url:"clientListingsPageBackend.php?originDropdown="+
           $("#originDropdown").val()+"&maxRPM="+
           $("#maxRPM").val()+"&maxWeight="+
           $("#maxWeight").val()+
@@ -356,8 +384,8 @@ var pie = new d3pie("pieChart", {
         })
         })
         $(function(){
-        $("#maxMiles").change(function(){
-          $.ajax({url:"displayProducts.php?originDropdown="+
+        $("#maxMiles, #maxrpm").change(function(){
+          $.ajax({url:"clientListingsPageBackend.php?originDropdown="+
           $("#originDropdown").val()+"&maxRPM="+
           $("#maxRPM").val()+"&maxWeight="+
           $("#maxWeight").val()+
@@ -381,5 +409,8 @@ var pie = new d3pie("pieChart", {
 </script>
 
 <div id="contentArea"></div>
+<p style='margin-left: auto; display: block; margin-right: auto;'>
+  <a href="logout.php">Click here to log out</a>
+</p>
 </body>
 </html>
