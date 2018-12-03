@@ -7,16 +7,21 @@ if (isset($_POST["submit"])) {
 ?>
 <html>
 <head>
-  <title>Load Board</title>
+  <title>Reynholm Industries</title>
+
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+   <link rel="stylesheet" href="stylesheet.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-  <nav>
-    <img src="reynholm.jpg" height="5%" width="5%">
-    <a href="truckerLanding.php">Home</a>
-      <a href="displayListings.php">All Loads</a>
-      <a href="myLoads.php">My Current Loads</a>
-      <a href="pastLoads.php">My Past Loads</a>
-</nav>
+      <img src="reynholm.jpg" height=5% width=5% />
+  <ul class="nav nav-tabs">
+  <li><a href="truckerLanding.php">Home</a></li>
+  <li class="active"><a href="displayListings.php">Listings</a></li>
+  <li><a href="myLoads.php">My Load</a></li>
+  <li ><a href="pastLoads.php">Past Loads</a></li>
+</ul>
 </body>
 </html>
 
@@ -28,7 +33,7 @@ require_once("db.php");
 $sql = "select * from listing where state='L'";
 $result = $mydb->query($sql);
 echo
-"<table>
+"<div><table>
     <tr>
     <th>  ListingID </th>
     <th>  Client Name </th>
@@ -68,5 +73,5 @@ elseif($row['state']=="R"){echo "<td>Removed</td>";}
         </form></td>
       </tr>";
   }
-  echo "</table>";
+  echo "</table></div>";
 ?>
