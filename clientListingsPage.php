@@ -237,7 +237,7 @@ echo "</select>";
         })
         })
         $(function(){
-        $("#resetSearch").Click(function(){
+        $("#resetSearch").onclick(function(){
           $.ajax({url:"clientListingsPageBackend.php?originDropdown="+
           $("#originDropdown").val()+"&maxRPM="+
           $("#maxRPM").val()+"&maxWeight="+
