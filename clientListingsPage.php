@@ -165,6 +165,24 @@ while($row=mysqli_fetch_array($result)){
 }
 echo "</select>";
 ?>"
+$(function(){
+  $.ajax({url:"clientListingsPageBackend.php?originDropdown="+
+  $("#originDropdown").val()+"&maxRPM="+
+  $("#maxRPM").val()+"&maxWeight="+
+  $("#maxWeight").val()+
+  "&destinationDropdown="+
+  $("#destinationDropdown").val()+
+  "&minRPM="+$("#minRPM").val()+
+  "&minWeight="+$("#minWeight").val()+
+  "&minMiles="+$("#minMiles").val()+
+  "&maxMiles="+$("#maxMiles").val()+
+  "&state="+$("#state").val(),
+    async:true,
+    success:function(result){
+      $("#contentArea").html(result);
+    }
+  })
+})
 }
 </script>
 		<table style="left-margin:auto;right-margin:auto;display:block;">
@@ -263,7 +281,7 @@ echo "</select>";
 
 <div id="contentArea"></div>
 <p style='margin-left: auto; display: block; margin-right: auto;'>
-  <a href="logout.php">Click here to log out</a>
+  <a style="" href="logout.php">Click here to log out</a>
 </p>
 </body>
 </html>

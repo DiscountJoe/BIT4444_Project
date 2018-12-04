@@ -63,25 +63,25 @@ $result = $mydb->query($sql);
   while($row = mysqli_fetch_array($result)) {
     echo
     "<tr>
-        <td>".$row['listingID']."</td>
-        <td>".$row['clientName']."</td>
-        <td>".$row['origin']."</td>
-        <td>".$row['destination']."</td>
-        <td>".$row['dateListed']."</td>
-        <td>".$row['weight']."</td>
-        <td>$".$row['rate']."</td>
-        <td>$".$row['miles']."</td>
-        <td>$".$row['ratePerMile']."</td>";
+        <td>".$row['listingID']."&nbsp</td>
+        <td>".$row['clientName']."&nbsp</td>
+        <td>".$row['origin']."&nbsp</td>
+        <td>".$row['destination']."&nbsp</td>
+        <td>".$row['dateListed']."&nbsp</td>
+        <td>".$row['weight']."&nbsp</td>
+        <td>$".$row['rate']."&nbsp</td>
+        <td>$".$row['miles']."&nbsp</td>
+        <td>$".$row['ratePerMile']."&nbsp</td>";
 
-        if ($row['state']=="NA"){echo "<td>Needs Approval</td>";}
-        elseif($row['state']=="L"){echo "<td>Listed</td>";}
-        elseif($row['state']=="IT"){echo "<td>In Transit</td>";}
-        elseif($row['state']=="F"){echo "<td>Fulfilled</td>";}
-        elseif($row['state']=="C"){echo "<td>Canceled</td>";}
+        if ($row['state']=="NA"){echo "<td>Needs Approval&nbsp</td>";}
+        elseif($row['state']=="L"){echo "<td>Listed&nbsp</td>";}
+        elseif($row['state']=="IT"){echo "<td>In Transit&nbsp</td>";}
+        elseif($row['state']=="F"){echo "<td>Fulfilled&nbsp</td>";}
+        elseif($row['state']=="C"){echo "<td>Canceled&nbsp</td>";}
 
     echo"<td><form method='post'
         action='".$_SERVER['PHP_SELF']."'>
-        <input type='text' name='listingID' value=".$row['listingID']." />
+        <input type='hidden' name='listingID' value=".$row['listingID']." />
         <input type='submit' name='submit' value='View More' />
         </form></td>
       </tr>
