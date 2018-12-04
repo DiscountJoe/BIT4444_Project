@@ -24,40 +24,169 @@ echo
       <th>Detail View &nbsp;</th>
     </tr>";
 
-$sql = "select * from listing where clientID='$clientID' and clientName='$clientName'";
+$conditions = "where clientID='$clientID' and clientName='$clientName'";
 if(isset($_GET['originDropdown']) && !($_GET['originDropdown']=="") && !($_GET['originDropdown']=="[object Object]")) {
-  $sql=$sql." and origin='".$_GET['originDropdown']."'";}
+  $conditions=$conditions." and origin='".$_GET['originDropdown']."'";}
 
 if((isset($_GET['minRPM']) && !($_GET['minRPM']=="") && !($_GET['minRPM']=="[object Object]")) &&
 (isset($_GET['maxRPM']) && !($_GET['maxRPM']=="") && !($_GET['maxRPM']=="[object Object]"))){
-  " and ratePerMile between '".$_GET['maxRPM']."' and '".$_GET['maxRPM']."'";}
+  " and ratePerMile between '".$_GET['maxRPM']."' and '".$_GET['minRPM']."'";}
 elseif(isset($_GET['minRPM']) && !($_GET['minRPM']=="") && !($_GET['minRPM']=="[object Object]")) {
-  $sql=$sql." and ratePerMile>='".$_GET['minRPM']."'";}
+  $conditions=$conditions." and ratePerMile>='".$_GET['minRPM']."'";}
 elseif(isset($_GET['maxRPM']) && !($_GET['maxRPM']=="") && !($_GET['maxRPM']=="[object Object]")) {
-  $sql= $sql."and ratePerMile<='".$_GET['maxRPM']."'";}
+  $conditions= $conditions."and ratePerMile<='".$_GET['maxRPM']."'";}
 
 if((isset($_GET['maxWeight']) && !($_GET['maxWeight']=="") && !($_GET['maxWeight']=="[object Object]")) &&
 (isset($_GET['minWeight']) && !($_GET['minWeight']=="") && !($_GET['minWeight']=="[object Object]"))){
 " and weight between '".$_GET['maxWeight']."' and '".$_GET['minWeight']."'";}
 elseif(isset($_GET['maxWeight']) && !($_GET['maxWeight']=="") && !($_GET['maxWeight']=="[object Object]")) {
-  $sql=$sql." and weight<='".$_GET['maxWeight']."'";}
+  $conditions=$conditions." and weight<='".$_GET['maxWeight']."'";}
 elseif(isset($_GET['minWeight']) && !($_GET['minWeight']=="") && !($_GET['minWeight']=="[object Object]")) {
-    $sql=$sql." and weight>='".$_GET['minWeight']."'";}
+    $conditions=$conditions." and weight>='".$_GET['minWeight']."'";}
 
 
 if(isset($_GET['destinationDropdown']) && !($_GET['destinationDropdown']=="") && !($_GET['destinationDropdown']=="[object Object]")) {
-  $sql=$sql." and destination='".$_GET['destinationDropdown']."'";}
+  $conditions=$conditions." and destination='".$_GET['destinationDropdown']."'";}
 
 if((isset($_GET['minMiles'])  && !($_GET['minMiles']=="") && !($_GET['minMiles']=="[object Object]"))  &&
 (isset($_GET['maxMiles'])  && !($_GET['maxMiles']=="") && !($_GET['maxMiles']=="[object Object]"))){
   " and miles between '".$_GET['maxMiles']."' and '".$_GET['minMiles']."'";}
 elseif(isset($_GET['minMiles'])  && !($_GET['minMiles']=="")  &&  !($_GET['minMiles']=="[object Object]")) {
-  $sql=$sql." and miles>='".$_GET['minMiles']."'";}
+  $conditions=$conditions." and miles>='".$_GET['minMiles']."'";}
 elseif(isset($_GET['maxMiles'])  && !($_GET['maxMiles']=="")  &&  !($_GET['maxMiles']=="[object Object]")) {
-    $sql=$sql." and miles<='".$_GET['maxMiles']."'";}
+    $conditions=$conditions." and miles<='".$_GET['maxMiles']."'";}
 
+if(isset($_GET['state'])  && !($_GET['state']=="")  &&  !($_GET['state']=="[object Object]")) {
+        $conditions=$conditions." and state='".$_GET['state']."'";}
+
+        $sql="select * from listing ".$conditions;
+echo $sql;
+?>
+<html>
+<head>
+</head>
+<body>
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/d3/4.7.2/d3.min.js"></script>
+<script src="d3pie.min.js"></script>
+<script>
+d3pie.destroy("pieChart");
+</script>
+<div id="pieChart" style="margin: auto;
+background-color:white;
+width: 625px;
+border: 3px solid black;
+padding: 10px;"></div>
+<script>
+var pie = new d3pie("pieChart", {
+"header": {
+  "title": {
+    "text": "Current Query Composition",
+    "fontSize": 20,
+    "font": "open sans"
+  },
+  "subtitle": {
+    "text": "by fulfillment status",
+    "color": "#999999",
+    "font": "open sans"
+  },
+  "titleSubtitlePadding": 9
+},
+"footer": {
+  "color": "#999999",
+  "fontSize": 10,
+  "font": "open sans",
+  "location": "bottom-left"
+},
+"size": {
+  "canvasWidth": 590,
+  "pieInnerRadius": "40%",
+  "pieOuterRadius": "63%"
+},
+"data": {
+  "sortOrder": "value-desc",
+  "content": [
+    {
+      "label": "Needs Approval",
+      "value": <?php $sql2=("select count(state) as total from listing ".$conditions." and state='NA'");
+      $result = $mydb->query($sql2);
+      while($row=mysqli_fetch_array($result)){echo $row['total'];}?>,
+      "color": "#1c6898"
+    },
+    {
+      "label": "Listed",
+      "value": <?php $sql2=("select count(state) as total from listing ".$conditions." and state='L'");
+      $result = $mydb->query($sql2);
+      while($row=mysqli_fetch_array($result)){echo $row['total'];}?>,
+      "color": "#a39216"
+    },
+    {
+      "label": "In-Transit",
+      "value": <?php $sql2=("select count(state) as total from listing ".$conditions." and state='IT'");
+      $result = $mydb->query($sql2);
+      while($row=mysqli_fetch_array($result)){echo $row['total'];}?>,
+      "color": "#1628a4"
+    },
+    {
+      "label": "Fulfilled",
+      "value": <?php $sql2=("select count(state) as total from listing ".$conditions." and state='F'");
+      $result = $mydb->query($sql2);
+      while($row=mysqli_fetch_array($result)){echo $row['total'];}?>,
+      "color": "#12bd09"
+    },
+    {
+      "label": "Cancelled",
+      "value": <?php $sql2=("select count(state) as total from listing ".$conditions." and state='C'");
+      $result = $mydb->query($sql2);
+      while($row=mysqli_fetch_array($result)){echo $row['total'];}?>,
+      "color": "#a11818"
+    }
+  ]
+},
+"labels": {
+  "outer": {
+    "pieDistance": 32
+  },
+  "inner": {
+    "hideWhenLessThanPercentage": 3
+  },
+  "mainLabel": {
+    "fontSize": 11
+  },
+  "percentage": {
+    "color": "#ffffff",
+    "decimalPlaces": 0
+  },
+  "value": {
+    "color": "#adadad",
+    "fontSize": 11
+  },
+  "lines": {
+    "enabled": true
+  },
+  "truncation": {
+    "enabled": true
+  }
+},
+"effects": {
+  "pullOutSegmentOnClick": {
+    "effect": "linear",
+    "speed": 400,
+    "size": 8
+  }
+},
+"misc": {
+  "gradient": {
+    "enabled": true,
+    "percentage": 100
+  }
+}
+});</script>
+</body>
+</html>
+<?php
 $result = $mydb->query($sql);
-
 
 
   while($row = mysqli_fetch_array($result)) {
