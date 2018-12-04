@@ -22,9 +22,9 @@ if (isset($_POST["submit"])) {
 <body>
       <img src="reynholm.jpg" height=5% width=5% />
   <ul class="nav nav-tabs">
-  <li class="active"><a href="clientLanding.php">Home</a></li>
+  <li><a href="clientLanding.php">Home</a></li>
   <li><a href="clientListingsPage.php">Your Listings</a></li>
-  <li><a href="clientCurrentLoads.php">Loads in Transit</a></li>
+  <li class="active"><a href="clientCurrentLoads.php">Loads in Transit</a></li>
   <li><a href="clientPastLoads.php">Past Loads</a></li>
   <li><a href="createListing.php">Create Listing</a></li>
 </ul>

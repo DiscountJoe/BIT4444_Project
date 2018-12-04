@@ -12,18 +12,23 @@ if (isset($_POST["submit"])) {
 ?>
 <html>
 <head>
-  <title>Client Listings History</title>
+  <title>Reynholm Industries</title>
+
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+   <link rel="stylesheet" href="stylesheet.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-  <nav>
-    <img src="reynholm.jpg" height="5%" width="5%">
-    <a href="clientLanding.php">Home</a>
-      <a href="clientListingsPage.php">All Loads</a>
-      <a href="clientCurrentLoads.php">My Current Loads</a>
-      <a href="clientPastLoads.php">My Past Loads</a>
-      <a href="createListing.php">Create Listing</a>
-</nav>
-<table>
+      <img src="reynholm.jpg" height=5% width=5% />
+  <ul class="nav nav-tabs">
+  <li><a href="clientLanding.php">Home</a></li>
+  <li><a href="clientListingsPage.php">Your Listings</a></li>
+  <li><a href="clientCurrentLoads.php">Loads in Transit</a></li>
+  <li class="active"><a href="clientPastLoads.php">Past Loads</a></li>
+  <li><a href="createListing.php">Create Listing</a></li>
+</ul>
+<div><table>
   <tr>
     <td>Origin:</td>
     <td><?php
@@ -68,15 +73,13 @@ if (isset($_POST["submit"])) {
     <td></td>
     <td></td>
   </tr>
-</table>
-<div id='contentArea'></div>
-
+</table></div>
 
 <?php
 $sql = "select * from listing where clientID='$clientID' and clientName='$clientName' and (state='C' or state='F')";
 $result = $mydb->query($sql);
 echo
-"<table>
+"<div><table>
     <tr>
       <th>  ListingID </th>
       <th>  Client Name </th>
@@ -119,7 +122,7 @@ echo
 
       ";
   }
-  echo "</table>";
+  echo "</table></div>";
 ?>
 <p><a href="logout.php">Click here to log out</a></p>
 
