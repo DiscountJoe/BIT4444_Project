@@ -205,7 +205,7 @@ echo "</select>";
 		  </tr>
 		  <tr>
         <td><input type="hidden" name="state" id="state" value="" /></td>
-		    <td><button id="resetSearch" onclick="clearAll();">Reset Search</button></td>
+		    <td><button id="resetSearch" name="resetSearch" onclick="clearAll();">Reset Search</button></td>
 		    <td>Maximum Miles:</td>
 		    <td><input type="number" name="maxMiles" id="maxMiles" value="" /></td>
 		    <td>Minimum Miles:</td>
@@ -215,92 +215,9 @@ echo "</select>";
 
 		<script src="jquery-3.1.1.min.js"></script>
 		<script>
-    $(function(){
-		$("#originDropdown").change(function(){
-			$.ajax({url:"clientListingsPageBackend.php?originDropdown="+
-			$("#originDropdown").val()+"&maxRPM="+
-			$("#maxRPM").val()+"&maxWeight="+
-			$("#maxWeight").val()+
-			"&destinationDropdown="+
-			$("#destinationDropdown").val()+
-			"&minRPM="+$("#minRPM").val()+
-			"&minWeight="+$("#minWeight").val()+
-			"&dateListed="+$("#dateListed")+
-			"&minMiles="+$("#minMiles")+
-			"&maxMiles="+$("#maxMiles")+
-			"&state="+$("#state"),
-		    async:true,
-		    success:function(result){
-		      $("#contentArea").html(result);
-		    }
-		  })
-		})
-		})
-    $(function(){
-		$("#destinationDropdown").change(function(){
-			$.ajax({url:"clientListingsPageBackend.php?originDropdown="+
-			$("#originDropdown").val()+"&maxRPM="+
-			$("#maxRPM").val()+"&maxWeight="+
-			$("#maxWeight").val()+
-			"&destinationDropdown="+
-			$("#destinationDropdown").val()+
-			"&minRPM="+$("#minRPM").val()+
-			"&minWeight="+$("#minWeight").val()+
-			"&dateListed="+$("#dateListed")+
-			"&minMiles="+$("#minMiles")+
-			"&maxMiles="+$("#maxMiles")+
-			"&state="+$("#state"),
-		    async:true,
-		    success:function(result){
-		      $("#contentArea").html(result);
-		    }
-		  })
-		})
-		})
-    $(function(){
-    $("#minRPM").change(function(){
-      $.ajax({url:"clientListingsPageBackend.php?originDropdown="+
-      $("#originDropdown").val()+"&maxRPM="+
-      $("#maxRPM").val()+"&maxWeight="+
-      $("#maxWeight").val()+
-      "&destinationDropdown="+
-      $("#destinationDropdown").val()+
-      "&minRPM="+$("#minRPM").val()+
-      "&minWeight="+$("#minWeight").val()+
-      "&dateListed="+$("#dateListed")+
-      "&minMiles="+$("#minMiles")+
-      "&maxMiles="+$("#maxMiles")+
-      "&state="+$("#state"),
-        async:true,
-        success:function(result){
-          $("#contentArea").html(result);
-        }
-      })
-    })
-    })
-    $(function(){
-    		$("#minWeight").change(function(){
-    			$.ajax({url:"clientListingsPageBackend.php?originDropdown="+
-    			$("#originDropdown").val()+"&maxRPM="+
-    			$("#maxRPM").val()+"&maxWeight="+
-    			$("#maxWeight").val()+
-    			"&destinationDropdown="+
-    			$("#destinationDropdown").val()+
-    			"&minRPM="+$("#minRPM").val()+
-    			"&minWeight="+$("#minWeight").val()+
-    			"&dateListed="+$("#dateListed")+
-    			"&minMiles="+$("#minMiles")+
-    			"&maxMiles="+$("#maxMiles")+
-    			"&state="+$("#state"),
-    		    async:true,
-    		    success:function(result){
-    		      $("#contentArea").html(result);
-    		    }
-    		  })
-    		})
-    		})
+
         $(function(){
-        $("#minMiles").change(function(){
+        $("#maxMiles, #maxRPM, #maxMiles, #maxWeight, #minMiles, #minWeight, #minRPM, #destinationDropdown, #originDropdown").change(function(){
           $.ajax({url:"clientListingsPageBackend.php?originDropdown="+
           $("#originDropdown").val()+"&maxRPM="+
           $("#maxRPM").val()+"&maxWeight="+
@@ -309,10 +226,9 @@ echo "</select>";
           $("#destinationDropdown").val()+
           "&minRPM="+$("#minRPM").val()+
           "&minWeight="+$("#minWeight").val()+
-          "&dateListed="+$("#dateListed")+
-          "&minMiles="+$("#minMiles")+
-          "&maxMiles="+$("#maxMiles")+
-          "&state="+$("#state"),
+          "&minMiles="+$("#minMiles").val()+
+          "&maxMiles="+$("#maxMiles").val()+
+          "&state="+$("#state").val(),
             async:true,
             success:function(result){
               $("#contentArea").html(result);
@@ -321,70 +237,7 @@ echo "</select>";
         })
         })
         $(function(){
-        $("#maxWeight").change(function(){
-          $.ajax({url:"clientListingsPageBackend.php?originDropdown="+
-          $("#originDropdown").val()+"&maxRPM="+
-          $("#maxRPM").val()+"&maxWeight="+
-          $("#maxWeight").val()+
-          "&destinationDropdown="+
-          $("#destinationDropdown").val()+
-          "&minRPM="+$("#minRPM").val()+
-          "&minWeight="+$("#minWeight").val()+
-          "&dateListed="+$("#dateListed")+
-          "&minMiles="+$("#minMiles")+
-          "&maxMiles="+$("#maxMiles")+
-          "&state="+$("#state"),
-            async:true,
-            success:function(result){
-              $("#contentArea").html(result);
-            }
-          })
-        })
-        })
-        $(function(){
-        $("#maxMiles").change(function(){
-          $.ajax({url:"clientListingsPageBackend.php?originDropdown="+
-          $("#originDropdown").val()+"&maxRPM="+
-          $("#maxRPM").val()+"&maxWeight="+
-          $("#maxWeight").val()+
-          "&destinationDropdown="+
-          $("#destinationDropdown").val()+
-          "&minRPM="+$("#minRPM").val()+
-          "&minWeight="+$("#minWeight").val()+
-          "&dateListed="+$("#dateListed")+
-          "&minMiles="+$("#minMiles")+
-          "&maxMiles="+$("#maxMiles")+
-          "&state="+$("#state"),
-            async:true,
-            success:function(result){
-              $("#contentArea").html(result);
-            }
-          })
-        })
-        })
-        $(function(){
-        $("#maxRPM").change(function(){
-          $.ajax({url:"clientListingsPageBackend.php?originDropdown="+
-          $("#originDropdown").val()+"&maxRPM="+
-          $("#maxRPM").val()+"&maxWeight="+
-          $("#maxWeight").val()+
-          "&destinationDropdown="+
-          $("#destinationDropdown").val()+
-          "&minRPM="+$("#minRPM").val()+
-          "&minWeight="+$("#minWeight").val()+
-          "&dateListed="+$("#dateListed")+
-          "&minMiles="+$("#minMiles")+
-          "&maxMiles="+$("#maxMiles")+
-          "&state="+$("#state"),
-            async:true,
-            success:function(result){
-              $("#contentArea").html(result);
-            }
-          })
-        })
-        })
-        $(function(){
-        $("#maxMiles, #maxrpm").change(function(){
+        $("#resetSearch").Click(function(){
           $.ajax({url:"clientListingsPageBackend.php?originDropdown="+
           $("#originDropdown").val()+"&maxRPM="+
           $("#maxRPM").val()+"&maxWeight="+
