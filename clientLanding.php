@@ -17,6 +17,7 @@
   <li><a href="clientPastLoads.php">Past Loads</a></li>
   <li><a href="createListing.php">Create Listing</a></li>
 </ul>
+<img style='margin-left: auto; display: block; margin-right: auto;' src="macktruck.png"/>
   <?php
     //resume the session variable on this page
     session_start();
@@ -33,6 +34,8 @@
     echo "<p>Good ".$timeString." ".$clientName."!</p>";
 
    ?>
-   <p><a href="logout.php">Click here to log out</a></p>
+   <p style='margin-left: auto; display: block; margin-right: auto;'>
+     <a href="logout.php">Click here to log out</a>
+   </p>
 </body>
 </html>
