@@ -25,8 +25,8 @@ if (isset($_POST["submit"])) {
   	<<ul class="nav nav-tabs">
   		<li><a href="clientLanding.php">Home</a></li>
   		<li class="active"><a href="clientListingsPage.php">Your Listings</a></li>
-  		<li><a href="clientCurrentLoads.php">Loads in Transit</a></li>
-  		<li><a href="clientPastLoads.php">Past Loads</a></li>
+  		<li><a href="myloads.php">My loads</a></li>
+  		<li><a href="pastLoads.php">Past Loads</a></li>
   		<li><a href="createListing.php">Create Listing</a></li>
 		</ul>
     <div id="pieChart"></div>
@@ -193,7 +193,7 @@ $(function(){
 		      echo "<option value = '$Selection'>$Selection</option>";
 		    }
 		    echo "</select>";
-		    ?></td>
+		    ?></td>0
 		    <td>Maximum Rate/Mile:</td>
 		    <td><input type="number" id="maxRPM" name="maxRPM" value="" /></td>
         <td>Minimum Rate/Mile:</td>
