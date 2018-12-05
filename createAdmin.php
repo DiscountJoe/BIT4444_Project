@@ -13,7 +13,7 @@
     if(isset($_POST["firstName"])) $firstName = $_POST["firstName"];
     if(isset($_POST["lastName"])) $lastName = $_POST["lastName"];
 
-    if (!empty($email) && !empty($password) && !empty($firstName) && !empty($lastName))
+    if (!empty($email) && !empty($password) && !empty($firstName) && !empty($lastName) &&strcmp($password, $confirmPass))
     {
       session_start();
       $_SESSION["email"] = $email;
@@ -32,16 +32,22 @@
 <!doctype html>
 
 <head>
-  <title>Create Admin</title>
-  <style>
-    .errlabel {color:red;}
-  </style>
+  <title>Reynholm Industries</title>
+
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+   <link rel="stylesheet" href="stylesheet.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
   <form method="post" action="<?php echo $_SERVER['PHP_SELF']?>"
     <label>email:
-      <input type="text" name="email" value="<?php if(!empty($email)) echo $email; ?>" />
-
+      <input type="text" name="email" value="<?php echo $email; ?>" />
+        <?php
+        if ($err && empty($email)) {
+          echo "<label class='errlabel'>Please enter an email.</label>";
+        }
+        ?>
     </label>
     <br />
 
@@ -56,20 +62,20 @@
     <br />
 
     <label>Confirm password:
-      <input type="text" name="firstName" value="<?php echo $firstName; ?>" />
+      <input type="text" name="confirmPass" value="<?php echo $confirmPass; ?>" />
       <?php
-        if ($err && empty($firstName)) {
-          echo "<label class='errlabel'>Please enter a password.</label>";
+        if ($err && empty($confirmPass)) {
+          echo "<label class='errlabel'>Please enter a confirmPass.</label>";
         }
       ?>
     </label>
     <br />
 
     <label>First Name:
-      <input type="text" name="$firstName" value="<?php echo $firstName; ?>" />
+      <input type="text" name="firstName" value="<?php echo $firstName; ?>" />
       <?php
         if ($err && empty($firstName)) {
-          echo "<label class='errlabel'>Please enter a Location.</label>";
+          echo "<label class='errlabel'>Please enter a first name.</label>";
         }
       ?>
     </label>
@@ -79,7 +85,7 @@
       <input type="text" name="lastName" value="<?php echo $lastName; ?>" />
       <?php
         if ($err && empty($lastName)) {
-          echo "<label class='errlabel'>Please enter a valid userName.</label>";
+          echo "<label class='errlabel'>Please enter a Last Name.</label>";
         }
       ?>
     </label>

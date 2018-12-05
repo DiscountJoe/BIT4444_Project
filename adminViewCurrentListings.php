@@ -21,6 +21,7 @@ if (isset($_POST["submit"])) {
       <li><a href="adminViewListings.php">View Listings</a></li>
       <li><a href="moderationNew.php">Moderation</a></li>
         <li class="active"><a href="adminViewCurrentListings.php">View Current Listings</a></li>
+        <li><a href="adminAreYouSure.php">Delete your Account</a></li>
 
     </ul>
 </body>

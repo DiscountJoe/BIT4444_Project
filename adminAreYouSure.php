@@ -2,13 +2,12 @@
 require_once("db.php");
 session_start();
 $adminID=$_SESSION['adminID'];
-//$clientName=$_SESSION['clientName'];
-//$clientID=$_SESSION['clientID'];
+
 if (isset($_POST["submit"])) {
+  require_once("db.php");
 
   $sql = "delete from admin where adminID=$adminID";
-    $result = $mydb->query($sql);
-    Header("Location:deleteAdminAccount.php");
+    Header("Location:  deleteAdminAccount.php");
   }
 ?>
 <!doctype html>
@@ -32,11 +31,11 @@ if (isset($_POST["submit"])) {
 </ul>
   <?php
   echo"
-<p>If you click the button below your account WILL BE DELETED. Are you sure you wanna do it, man? Don't do it if you're not ABSOLUTELY sure. Okay?</p>
+<div><p>If you click the button below your account WILL BE DELETED. Are you sure you wanna do it, man? Don't do it if you're not ABSOLUTELY sure. Okay?</p>
   <form method='post'
       action='".$_SERVER['PHP_SELF']."'>
-        <input type='submit' name='submit' value='Delete This' />
-      </form>"?>
+        <input style='text-align:center;' type='submit' name='submit' value='Delete This' />
+      </form></div>"?>
 
 </body>
 </html>

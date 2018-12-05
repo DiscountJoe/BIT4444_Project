@@ -42,7 +42,7 @@ if (isset($_POST["submit"])) {
     $result = $mydb->query($sql);
     while($row=mysqli_fetch_array($result)){
       $Selection=$row["origin"];
-      echo "<table>
+      echo "<div><table>
       <tr>
       <th>Listing Information</th>
       <th></th>
@@ -110,7 +110,7 @@ if (isset($_POST["submit"])) {
         </form>
     </td>
   </tr>";
-echo "</table>";
+echo "</table></div>";
     }
 
    ?>
