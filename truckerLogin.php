@@ -97,6 +97,6 @@
     </table>
   </form>
 
-<a href="create.html">Create an account.</a>
+<a href="createTrucker.html">Create an account.</a>
 </body>
 </html>
