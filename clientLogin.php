@@ -59,6 +59,7 @@
 <html>
 <head>
   <title>Login</title>
+  <link rel="stylesheet" href="stylesheet.css" />
   <style>
     .errlabel {color:red};
   </style>
@@ -103,6 +104,6 @@
     </table>
   </form>
 
-<a href="createClient.php">Create an account.</a>
+<a href="createClient.html">Create an account.</a>
 </body>
 </html>

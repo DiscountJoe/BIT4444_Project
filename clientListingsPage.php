@@ -31,7 +31,6 @@ if (isset($_POST["submit"])) {
   		<li><a href="createListing.php">Create Listing</a></li>
 		</ul>
 
-
 <script src="//cdnjs.cloudflare.com/ajax/libs/d3/4.7.2/d3.min.js"></script>
 <script src="d3pie.min.js"></script>
 <script>
@@ -58,7 +57,13 @@ while($row=mysqli_fetch_array($result)){
 }
 echo "</select>";
 ?>"
-document.getElementById("pieChart").innerHTML="";
+
+document.getElementById("maxRPM").value="";
+document.getElementById("minRPM").value="";
+document.getElementById("maxWeight").value="";
+document.getElementById("minWeight").value="";
+document.getElementById("maxMiles").value="";
+document.getElementById("minMiles").value="";
 
 $(function(){
   $.ajax({url:"clientListingsPageBackend.php?originDropdown="+
@@ -80,7 +85,9 @@ $(function(){
 })
 }
 </script>
-		<table style="left-margin:auto;right-margin:auto;display:block;">
+<div style="left-margin:auto;right-margin:auto;display:block;width:850px;">
+
+    <table style="text-align:center;left-margin:auto;right-margin:auto;display:block;">
 		  <tr>
 		    <td>Origin:</td>
 		    <td><?php
@@ -125,6 +132,7 @@ $(function(){
 		    <td><input type="number" name="minMiles" id="minMiles" value="" /></td>
 		  </tr>
 		</table>
+</div>
 
 		<script src="jquery-3.1.1.min.js"></script>
 		<script>
@@ -149,29 +157,6 @@ $(function(){
           })
         })
         })
-        $(function(){
-        $("#resetSearch").onclick(function(){
-          $.ajax({url:"clientListingsPageBackend.php?originDropdown="+
-          $("#originDropdown").val()+"&maxRPM="+
-          $("#maxRPM").val()+"&maxWeight="+
-          $("#maxWeight").val()+
-          "&destinationDropdown="+
-          $("#destinationDropdown").val()+
-          "&minRPM="+$("#minRPM").val()+
-          "&minWeight="+$("#minWeight").val()+
-          "&dateListed="+$("#dateListed")+
-          "&minMiles="+$("#minMiles")+
-          "&maxMiles="+$("#maxMiles")+
-          "&state="+$("#state"),
-            async:true,
-            success:function(result){
-              $("#contentArea").html(result);
-            }
-          })
-        })
-        })
-
-
 </script>
 
 <div id="contentArea"></div>

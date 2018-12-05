@@ -1,26 +1,39 @@
 <!doctype html>
 <html>
 <head>
-  <title>Success</title>
+  <title>Reynholm Industries</title>
+
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+   <link rel="stylesheet" href="stylesheet.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
+      <img src="reynholm.jpg" height=5% width=5% />
+  <ul class="nav nav-tabs">
+  <li><a href="clientLanding.php">Home</a></li>
+  <li><a href="clientListingsPage.php">Your Listings</a></li>
+  <li><a href="clientCurrentLoads.php">Loads in Transit</a></li>
+  <li><a href="clientPastLoads.php">Past Loads</a></li>
+  <li><a href="createListing.php">Create Listing</a></li>
+</ul>
   <?php
+    session_start();
     $state = "NA";//needs approval
     $CDL = "N/A";//not applicable
     $dateFufilled = "N/A";//not applicable
-//hhhhhh
-    session_start();
-    $destination = $_SESSION["destination"];
-    $dateListed = $_SESSION["dateListed"];
-    $weight = $_SESSION["weight"];
-    $origin = $_SESSION["origin"];
-    $rate=$_SESSION["rate"];
-    $clientID=$_SESSION['clientID'];//for integration with login page
-    $miles=$_SESSION['miles'];
-    $ratePerMile=($rate/$miles);
 
-    //$clientName=$_SESSION['clientName']; for integration with login page
-    $clientName="Pedros inconspicuous shipping crates"; //placeholder until login integration
+
+    if(isset($_SESSION['destination']))$destination = $_SESSION['destination'];
+    if(isset($_SESSION['dateListed']))$dateListed = $_SESSION['dateListed'];
+    if(isset($_SESSION['weight']))$weight = $_SESSION['weight'];
+    if(isset($_SESSION['origin']))$origin = $_SESSION['origin'];
+    if(isset($_SESSION['rate']))$rate=$_SESSION['rate'];
+    if(isset($_SESSION['clientID']))$clientID=$_SESSION['clientID'];//for integration with login page
+    if(isset($_SESSION['miles']))$miles=$_SESSION['miles'];
+    $ratePerMile=($rate/$miles);
+    if(isset($_SESSION['clientName']))$clientName=$_SESSION['clientName'];
+    echo $clientName;
 
     require_once("db.php");
 
@@ -83,6 +96,8 @@
            echo "an error occured, please try again";
          }
   ?>
-
+  <p style='margin-left: auto; display: block; margin-right: auto;'>
+    <a style="background-color:white;" href="logout.php">Click here to log out</a>
+  </p>
 </body>
 </html>

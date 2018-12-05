@@ -9,7 +9,7 @@ if (isset($_POST["submit"])) {
   }
 
 echo
-"<div><table>
+"<p style='left-margin:auto;right-margin:auto;display:block;'><table>
     <tr>
       <th>  ListingID &nbsp;</th>
       <th>  Client Name &nbsp;</th>
@@ -30,7 +30,8 @@ if(isset($_GET['originDropdown']) && !($_GET['originDropdown']=="") && !($_GET['
 
 if((isset($_GET['minRPM']) && !($_GET['minRPM']=="") && !($_GET['minRPM']=="[object Object]")) &&
 (isset($_GET['maxRPM']) && !($_GET['maxRPM']=="") && !($_GET['maxRPM']=="[object Object]"))){
-  " and ratePerMile between '".$_GET['maxRPM']."' and '".$_GET['minRPM']."'";}
+  $conditions=$conditions." and ratePerMile between '".$_GET['minRPM']."' and '".$_GET['maxRPM']."'";
+echo "rpmworks";}
 elseif(isset($_GET['minRPM']) && !($_GET['minRPM']=="") && !($_GET['minRPM']=="[object Object]")) {
   $conditions=$conditions." and ratePerMile>='".$_GET['minRPM']."'";}
 elseif(isset($_GET['maxRPM']) && !($_GET['maxRPM']=="") && !($_GET['maxRPM']=="[object Object]")) {
@@ -38,7 +39,8 @@ elseif(isset($_GET['maxRPM']) && !($_GET['maxRPM']=="") && !($_GET['maxRPM']=="[
 
 if((isset($_GET['maxWeight']) && !($_GET['maxWeight']=="") && !($_GET['maxWeight']=="[object Object]")) &&
 (isset($_GET['minWeight']) && !($_GET['minWeight']=="") && !($_GET['minWeight']=="[object Object]"))){
-" and weight between '".$_GET['maxWeight']."' and '".$_GET['minWeight']."'";}
+$conditions=$conditions." and weight between '".$_GET['minWeight']."' and '".$_GET['maxWeight']."'";
+echo "weightworks";}
 elseif(isset($_GET['maxWeight']) && !($_GET['maxWeight']=="") && !($_GET['maxWeight']=="[object Object]")) {
   $conditions=$conditions." and weight<='".$_GET['maxWeight']."'";}
 elseif(isset($_GET['minWeight']) && !($_GET['minWeight']=="") && !($_GET['minWeight']=="[object Object]")) {
@@ -50,7 +52,8 @@ if(isset($_GET['destinationDropdown']) && !($_GET['destinationDropdown']=="") &&
 
 if((isset($_GET['minMiles'])  && !($_GET['minMiles']=="") && !($_GET['minMiles']=="[object Object]"))  &&
 (isset($_GET['maxMiles'])  && !($_GET['maxMiles']=="") && !($_GET['maxMiles']=="[object Object]"))){
-  " and miles between '".$_GET['maxMiles']."' and '".$_GET['minMiles']."'";}
+  $conditions=$conditions." and miles between '".$_GET['minMiles']."' and '".$_GET['maxMiles']."'";
+echo "milesworks";}
 elseif(isset($_GET['minMiles'])  && !($_GET['minMiles']=="")  &&  !($_GET['minMiles']=="[object Object]")) {
   $conditions=$conditions." and miles>='".$_GET['minMiles']."'";}
 elseif(isset($_GET['maxMiles'])  && !($_GET['maxMiles']=="")  &&  !($_GET['maxMiles']=="[object Object]")) {
@@ -65,7 +68,7 @@ echo $sql;
 <html>
 <head>
 </head>
-<body>
+<body style="background-color:skyblue">
 
 
 <script src="//cdnjs.cloudflare.com/ajax/libs/d3/4.7.2/d3.min.js"></script>
@@ -217,5 +220,5 @@ $result = $mydb->query($sql);
 
       ";
   }
-  echo "</table></div>";
+  echo "</table></p>";
 ?>
