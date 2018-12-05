@@ -23,11 +23,10 @@ if (isset($_POST["submit"])) {
 	<body "clearAll()">
 		<img src="reynholm.jpg" height=5% width=5% />
   	<<ul class="nav nav-tabs">
-  		<li><a href="clientLanding.php">Home</a></li>
+  		<li><a href="truckerLanding.php">Home</a></li>
   		<li class="active"><a href="clientListingsPage.php">Your Listings</a></li>
-  		<li><a href="myloads.php">My loads</a></li>
-  		<li><a href="pastLoads.php">Past Loads</a></li>
-  		<li><a href="createListing.php">Create Listing</a></li>
+  		<li><a href="myTruckerLoads.php">My loads</a></li>
+  		<li><a href="pastTruckerLoads.php">Past Loads</a></li>
 		</ul>
     <div id="pieChart"></div>
     <script src="//cdnjs.cloudflare.com/ajax/libs/d3/4.7.2/d3.min.js"></script>
@@ -36,7 +35,7 @@ if (isset($_POST["submit"])) {
     var pie = new d3pie("pieChart", {
     	"header": {
     		"title": {
-    			"text": "All <?php echo $clientName ?> Listings",
+    			"text": "All <?php echo $CDL ?> Listings",
     			"fontSize": 24,
     			"font": "open sans"
     		},

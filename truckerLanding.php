@@ -12,9 +12,12 @@
       <img src="reynholm.jpg" height=5% width=5% />
   <ul class="nav nav-tabs">
   <li class="active"><a href="truckerLanding.php">Home</a></li>
-  <li><a href="displayListings.php">Listings</a></li>
-  <li><a href="myLoads.php">My Load</a></li>
-  <li><a href="pastLoads.php">Past Loads</a></li>
+  <li><a href="truckListingsPage.php">Listings</a></li>
+  <li><a href="myLoads.php">My Loads</a></li>
+  <li><a href="pastTruckerLoads.php">Past Loads</a></li>
+    <li><a href="TruckerAreYouSure.php">Delete Account</a></li>
+</ul>
+<img src="macktruck.png" height=70% width=100% />
 </ul>
   <?php
     //resume the session variable on this page
@@ -30,6 +33,6 @@
     echo "<p>Good ".$timeString." ".$_SESSION["firstName"]."!</p>";
 
    ?>
-   <p><a href="logout.php">Click here to log out</a></p>
+   <p><a style ="background-color: white;"href="logout.php">Click here to log out</a></p>
 </body>
 </html>
