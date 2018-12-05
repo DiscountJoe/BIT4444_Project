@@ -32,7 +32,7 @@
     echo "<p>Good ".$timeString." ".$_SESSION["firstName"]."!</p>";
 
    ?>
-   <img src=macktruck.png/>
-   <p><a href="logout.php">Click here to log out</a></p>
+   <img src="macktruck.png"/>
+   <p><a style="background-color:white;" href="logout.php">Click here to log out</a></p>
 </body>
 </html>
