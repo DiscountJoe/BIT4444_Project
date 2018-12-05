@@ -4,7 +4,7 @@ require_once("db.php");
 
 if (isset($_POST["submit"])) {
     if(isset($_POST["listingID"])) $_SESSION['listingID']=$_POST["listingID"];
-  //  Header("Location:  clientListingDetailView.php");
+    Header("Location:  adminDetail.php");
   }
 
 echo
@@ -116,12 +116,12 @@ elseif($row['state']=="L"){echo "<td>Listed</td>";}
 elseif($row['state']=="IT"){echo "<td>In Transit</td>";}
 elseif($row['state']=="F"){echo "<td>Fulfilled</td>";}
 elseif($row['state']=="C"){echo "<td>Cancelled</td>";}
-    /*  echo"<td><form method='post'
+      echo"<td><form method='post'
       action='".$_SERVER['PHP_SELF']."'>
-      <input type='text' name='listingID' value=".$lid." />
+      <input type='hidden' name='listingID' value=".$lid." />
       <input type='submit' name='submit' value='View Detail' />
       </form></td>
-    </tr>"; */
+    </tr>";
 }
   echo "</table></div>";
 ?>
