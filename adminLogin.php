@@ -55,6 +55,8 @@
 <html>
 <head>
   <title>Login</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="stylesheet.css" />
   <style>
     .errlabel {color:red};
   </style>
@@ -62,7 +64,7 @@
 <body>
   <img src="reynholm.jpg" height="5%" width="5%">
   <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" >
-    <table>
+  <div><table>
       <tr>
         <td>email</td>
       </tr>
@@ -97,6 +99,6 @@
     </table>
   </form>
 
-<a href="createAdmin.php">Create an account.</a>
+<a href="createAdmin.php">Create an account.</a></div>
 </body>
 </html>
