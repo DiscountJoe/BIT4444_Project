@@ -1,3 +1,15 @@
+<?php
+require_once("db.php");
+session_start();
+//$clientName=$_SESSION['clientName'];
+//$clientID=$_SESSION['clientID'];
+if (isset($_POST["submit"])) {
+  require_once("db.php");
+
+  $sql = "delete from admin where adminID=$adminID";
+    Header("Location:  logout.php");
+  }
+?>
 <!doctype html>
 <html>
 <head>
@@ -17,21 +29,13 @@
   <li><a href="adminViewCurrentListings.php">View Current Listings</a></li>
     <li><a href="adminAreYouSure.php">Delete your Account</a></li>
 </ul>
-
   <?php
-    //resume the session variable on this page
-    session_start();
-    $timeString = "";
-    $currentTime = date("a");
-    if ($currentTime == "am") {
-      $timeString = "morning";
-    } else {
-      $timeString = "afternoon";
-    }
+  echo"
+<p>If you click the button below your account WILL BE DELETED. Are you sure you wanna do it, man? Don't do it if you're not ABSOLUTELY sure. Okay?</p>
+  <form method='post'
+      action='".$_SERVER['PHP_SELF']."'>
+        <input type='submit' name='submit' value='Delet This' />
+      </form>"?>
 
-    echo "<p>Good ".$timeString." ".$_SESSION["firstName"]."!</p>";
-
-   ?>
-   <p><a href="logout.php">Click here to log out</a></p>
 </body>
 </html>
