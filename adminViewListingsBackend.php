@@ -8,7 +8,7 @@ if (isset($_POST["submit"])) {
   }
 
 echo
-"<div><table>
+"<table>
     <tr>
       <th>  ListingID &nbsp;</th>
       <th>  Client Name &nbsp;</th>

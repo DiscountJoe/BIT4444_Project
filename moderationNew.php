@@ -22,8 +22,8 @@ if (isset($_POST["submit"])) {
       <img src="reynholm.jpg" height=5% width=5% />
       <ul class="nav nav-tabs">
       <li><a href="adminLanding.php">Home</a></li>
-      <li class="active"><a href="aminViewListings.php">View Listings</a></li>
-      <li><a href="moderationNew.php">Moderation</a></li>
+      <li><a href="adminViewListings.php">View Listings</a></li>
+      <li class="active"><a href="moderationNew.php">Moderation</a></li>
         <li><a href="adminViewCurrentListings.php">View Current Listings</a></li>
 
     </ul>
