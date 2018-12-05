@@ -1,7 +1,12 @@
 <!doctype html>
 <html>
 <head>
-  <title>Success</title>
+  <title>Login</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="stylesheet.css" />
+  <style>
+    .errlabel {color:red};
+  </style>
 </head>
 <body>
   <?php
@@ -17,11 +22,9 @@
     $clientID=$_SESSION['clientID'];//for integration with login page
     $miles=$_SESSION['miles'];
     $ratePerMile=($rate/$miles); */
-    $listingID=$_SESSION['listingID'];
-    if (isset($_SESSION['adminID']))
-    {
+
       echo "<a href='logout.php'>Return</a>";
-    }
+
     require_once("db.php");
 
     $sql = "delete from admin where adminID=$adminID";
