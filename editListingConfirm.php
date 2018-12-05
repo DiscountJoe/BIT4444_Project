@@ -4,6 +4,8 @@
 <html>
 <head>
   <title>Success</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+   <link rel="stylesheet" href="stylesheet.css" />
 </head>
 <body>
   <nav>
@@ -49,7 +51,7 @@
                 while($row = mysqli_fetch_array($result)){
            echo "<p>An edited Listing is now pending re-approval:</p></br>";
 
-           echo "<table>
+           echo "<table style='background-color:white;'>
               <tr>
                 <th>  Client Name </th>
                 <th>  Origin  </th>
@@ -79,6 +81,6 @@
          }
   ?>
 <a href="clientListingsPage.php">Click Here to Return to the Listings Page</a>
-
+<p><a href="logout.php">Click here to log out</a></p>
 </body>
 </html>

@@ -9,7 +9,8 @@ if (isset($_POST["submit"])) {
   }
 
 echo
-"<p style='left-margin:auto;right-margin:auto;display:block;'><table>
+    "<div style='margin-left: auto; display: block; margin-right: auto;width: 1200px;'>
+<table>
     <tr>
       <th>  ListingID &nbsp;</th>
       <th>  Client Name &nbsp;</th>
@@ -63,12 +64,11 @@ if(isset($_GET['state'])  && !($_GET['state']=="")  &&  !($_GET['state']=="[obje
         $conditions=$conditions." and state='".$_GET['state']."'";}
 
         $sql="select * from listing ".$conditions;
-echo $sql;
 ?>
 <html>
 <head>
 </head>
-<body style="background-color:skyblue">
+<body style="background-color:skyblue;">
 
 
 <script src="//cdnjs.cloudflare.com/ajax/libs/d3/4.7.2/d3.min.js"></script>
@@ -220,5 +220,5 @@ $result = $mydb->query($sql);
 
       ";
   }
-  echo "</table></p>";
+  echo "</table></div>";
 ?>

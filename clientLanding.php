@@ -21,6 +21,7 @@ require_once("db.php");
   <li><a href="clientCurrentLoads.php">Loads in Transit</a></li>
   <li><a href="clientPastLoads.php">Past Loads</a></li>
   <li><a href="createListing.php">Create Listing</a></li>
+  <li><a href="clientAccountManagement.php">Manage Account</a></li>
 </ul>
 
 <img style='margin-left: auto; display: block; margin-right: auto;' src="macktruck.png"/>

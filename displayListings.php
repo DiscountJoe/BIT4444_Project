@@ -21,6 +21,7 @@ if (isset($_POST["submit"])) {
   <li class="active"><a href="displayListings.php">Listings</a></li>
   <li><a href="myLoads.php">My Load</a></li>
   <li ><a href="pastLoads.php">Past Loads</a></li>
+  <li><a href="clientAccountManagement.php">Manage Account</a></li>
 </ul>
 </body>
 </html>

@@ -10,7 +10,7 @@
 <html>
 <head>
   <title>Reynholm Industries</title>
-
+<link rel="stylesheet" href="stylesheet.css">
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -23,12 +23,13 @@
   <li><a href="clientCurrentLoads.php">Loads in Transit</a></li>
   <li><a href="clientPastLoads.php">Past Loads</a></li>
   <li><a href="createListing.php">Create Listing</a></li>
+  <li><a href="clientAccountManagement.php">Manage Account</a></li>
 </ul>
   <?php
     require_once("db.php");
 
-    $sql = "insert into client (clientName, email, password, baseLocation)
-                 values ('$clientName', '$email', '$password', '$baseLocation')";
+    $sql = "insert into client (clientName, email, password, baseLocation, userName)
+                 values ('$clientName', '$email', '$password', '$baseLocation', 'swordfish')";
          $result=$mydb->query($sql);
 
          if ($result==1) {
@@ -38,8 +39,9 @@
                 while($row = mysqli_fetch_array($result)){
            echo "<p>A new product record has been added with information:</p></br>";
 
-               echo "<table><thead><th>clientName</th><th>email</th><th>password</th><th>clientID</th><th>baseLocation</th></thead>";
+               echo "<table style="background-color:white;"><thead><th>clientName</th><th>email</th><th>password</th><th>clientID</th><th>baseLocation</th></thead>";
                echo "<td>".$row['clientName']."</td><td>$email</td><td>$password</td><td>".$row['clientID']."</td><td>$baseLocation</td></table>";
+               $_SESSION['clientID']=$row['clientID'];
                    }
          }
          else
@@ -49,6 +51,7 @@
            echo "an error occured, please try again";
          }
   ?>
+  <p><a href="logout.php">Click here to log out</a></p>
 
 </body>
 </html>

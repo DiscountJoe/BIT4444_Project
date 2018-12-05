@@ -34,27 +34,34 @@
   }
 ?>
 
+<!doctype html>
 <html>
-<script>
-document.getElementById('datePicker').value = new Date().toDateInputValue();
+<script>document.getElementById('datePicker').value = new Date().toDateInputValue();
 </script>
 <head>
-  <title>Edit Listing</title>
-  <style>
-    .errlabel {color:red;}
-  </style>
+  <title>Reynholm Industries</title>
+
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+   <link rel="stylesheet" href="stylesheet.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-  <nav>
-    <img src="reynholm.jpg" height="5%" width="5%">
-    <a href="clientLanding.php">Home</a>
-      <a href="clientListingsPage.php">All Company Loads</a>
-      <a href="clientCurrentLoads.php">My Current Loads</a>
-      <a href="clientPastLoads.php">My Past Loads</a>
-      <a href="createListing.php">Create Listing</a>
-</nav>
+  <img src="reynholm.jpg" height=5% width=5% />
+<ul class="nav nav-tabs">
+<li><a href="clientLanding.php">Home</a></li>
+<li><a href="clientListingsPage.php">Your Listings</a></li>
+<li><a href="clientCurrentLoads.php">Loads in Transit</a></li>
+<li><a href="clientPastLoads.php">Past Loads</a></li>
+<li class="active"><a href="createListing.php">Create Listing</a></li>
+<li><a href="clientAccountManagement.php">Manage Account</a></li>
+</ul>
+    <div style='margin-left: auto; display: block; margin-right: auto;width: 300px;'>
+      ENTER NEW LISTING INFORMATION
+    </br>
+  </br>
   <form method="post" action="<?php echo $_SERVER['PHP_SELF']?>">
-     <label>origin:
+    <label>origin:
       <input type="text" name="origin" value="<?php echo $origin; ?>" />
       <?php
         if ($err && empty($origin)) {
@@ -74,7 +81,7 @@ document.getElementById('datePicker').value = new Date().toDateInputValue();
     <br />
 
     <label>dateListed:
-      <input type="date" name="dateListed" id="datePicker" value="<?php echo date('Y-m-d'); ?>"min="<?php echo date('Y-m-d'); ?>" max="2018-12-31"/>
+      <input type="date" name="dateListed" value="<?php echo date('Y-m-d'); ?>"min="<?php echo date('Y-m-d'); ?>" max="2018-12-31"/>
       <?php
         if ($err && empty($dateListed)) {
           echo "<label class='errlabel'>Please enter a dateListed.</label>";
@@ -103,7 +110,7 @@ document.getElementById('datePicker').value = new Date().toDateInputValue();
     <br />
 
     <label>weight:
-      <input type="text" name="weight" value="<?php echo $weight; ?>" />
+      <input type="number" name="weight" value="<?php echo $weight; ?>" />
       <?php
         if ($err && empty($weight)) {
           echo "<label class='errlabel'>Please enter a Location.</label>";
@@ -111,8 +118,12 @@ document.getElementById('datePicker').value = new Date().toDateInputValue();
       ?>
     </label>
     <br />
-    <input type="submit" name="submit" value="submit" />
+    <input type="hidden" name="clientName" value=<?php $clientName ?>/>
+    <input type="submit" name="submit" value="Submit" />
   </form>
-</body>
 
-</html>
+</div>
+<p style='margin-left: auto; display: block; margin-right: auto;'>
+  <a style="background-color:white;" href="logout.php">Click here to log out</a>
+</p>
+</body>

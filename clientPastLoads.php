@@ -29,12 +29,8 @@ if (isset($_POST["submit"])) {
   		<li><a href="clientCurrentLoads.php">Loads in Transit</a></li>
   		<li class="active"><a href="clientPastLoads.php">Past Loads</a></li>
   		<li><a href="createListing.php">Create Listing</a></li>
+      <li><a href="clientAccountManagement.php">Manage Account</a></li>
 		</ul>
-    <div id="pieChart" style="margin: auto;
-  background-color:white;
-  width: 625px;
-  border: 3px solid black;
-  padding: 10px;"></div>
 
 <script src="//cdnjs.cloudflare.com/ajax/libs/d3/4.7.2/d3.min.js"></script>
 <script src="d3pie.min.js"></script>
@@ -81,51 +77,55 @@ $(function(){
 })
 }
 </script>
-		<table style="left-margin:auto;right-margin:auto;display:block;">
-		  <tr>
-		    <td>Origin:</td>
-		    <td><?php
-		    $sql="select distinct origin from listing where clientID='$clientID'";
-		    $result = $mydb->query($sql);
-		    echo "<select id='originDropdown' name='originDropdown'><option value=''></option>";
-		    while($row=mysqli_fetch_array($result)){
-		      $Selection=$row["origin"];
-		      echo "<option value = '$Selection'>$Selection</option>";
-		    }
-		    echo "</select>";
-		    ?></td>
-		    <td>Maximum Rate/Mile:</td>
-		    <td><input type="number" id="maxRPM" name="maxRPM" value="" /></td>
+<div style="left-margin:auto;right-margin:auto;display:block;width:850px;">
+
+    <table style="text-align:center;left-margin:auto;right-margin:auto;display:block;">
+      <tr>
+        <td>Origin:</td>
+        <td><?php
+        $sql="select distinct origin from listing where clientID='$clientID'";
+        $result = $mydb->query($sql);
+        echo "<select id='originDropdown' name='originDropdown'><option value=''></option>";
+        while($row=mysqli_fetch_array($result)){
+          $Selection=$row["origin"];
+          echo "<option value = '$Selection'>$Selection</option>";
+        }
+        echo "</select>";
+        ?></td>
+        <td>Maximum Rate/Mile:</td>
+        <td><input type="number" id="maxRPM" name="maxRPM" value="" /></td>
         <td>Minimum Rate/Mile:</td>
        <td><input type="number" name="minRPM" id="minRPM" value="" /></td>
 
-		  </tr>
-		  <tr>
-		    <td>Destination:</td>
-		    <td><?php
-		    $sql="select distinct destination from listing where clientID='$clientID'";
-		    $result = $mydb->query($sql);
-		    echo "<select id='destinationDropdown'><option value=''></option>";
-		    while($row=mysqli_fetch_array($result)){
-		      $Selection=$row["destination"];
-		      echo "<option value = '$Selection'>$Selection</option>";
-		    }
-		    echo "</select>";
-		    ?></td>
+      </tr>
+      <tr>
+        <td>Destination:</td>
+        <td><?php
+        $sql="select distinct destination from listing where clientID='$clientID'";
+        $result = $mydb->query($sql);
+        echo "<select id='destinationDropdown'><option value=''></option>";
+        while($row=mysqli_fetch_array($result)){
+          $Selection=$row["destination"];
+          echo "<option value = '$Selection'>$Selection</option>";
+        }
+        echo "</select>";
+        ?></td>
         <td>Maximum Weight:</td>
         <td><input type="number" id="maxWeight" name="maxWeight" value="" /></td>
-		    <td>Minimum Weight:</td>
-		    <td><input type="number" id="minWeight" name="minWeight" value="" /></td>
-		  </tr>
-		  <tr>
+        <td>Minimum Weight:</td>
+        <td><input type="number" id="minWeight" name="minWeight" value="" /></td>
+      </tr>
+      <tr>
         <td><input type="hidden" name="state" id="state" value="F" /></td>
-		    <td><button id="resetSearch" name="resetSearch" onclick="clearAll();">Reset Search</button></td>
-		    <td>Maximum Miles:</td>
-		    <td><input type="number" name="maxMiles" id="maxMiles" value="" /></td>
-		    <td>Minimum Miles:</td>
-		    <td><input type="number" name="minMiles" id="minMiles" value="" /></td>
-		  </tr>
-		</table>
+        <td><button id="resetSearch" name="resetSearch" onclick="clearAll();">Reset Search</button></td>
+        <td>Maximum Miles:</td>
+        <td><input type="number" name="maxMiles" id="maxMiles" value="" /></td>
+        <td>Minimum Miles:</td>
+        <td><input type="number" name="minMiles" id="minMiles" value="" /></td>
+      </tr>
+    </table>
+
+  </div>
 
 		<script src="jquery-3.1.1.min.js"></script>
 		<script>
@@ -176,7 +176,7 @@ $(function(){
 </script>
 
 <div id="contentArea"></div>
-<p style='margin-left: auto; display: block; margin-right: auto;'>
+<p style='margin-left: auto; display: block; margin-right: auto; background-color:slategrey;'>
   <a style="background-color:white;" href="logout.php">Click here to log out</a>
 </p>
 </body>

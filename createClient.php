@@ -67,7 +67,7 @@
     </label>
     <br />
 
-    <label>Confirm password:
+    <label>Client Name:
       <input type="text" name="clientName" value="<?php echo $clientName; ?>" />
       <?php
         if ($err && empty($clientName)) {

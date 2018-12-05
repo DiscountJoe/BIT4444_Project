@@ -18,6 +18,7 @@ session_start();
   <li><a href="clientCurrentLoads.php">Loads in Transit</a></li>
   <li><a href="clientPastLoads.php">Past Loads</a></li>
   <li><a href="createListing.php">Create Listing</a></li>
+  <li><a href="clientAccountManagement.php">Manage Account</a></li>
 </ul>
   <?php
     if (isset($_SESSION['listingID'])) $listingID=$_SESSION['listingID'];
@@ -29,7 +30,7 @@ session_start();
       }
       if (isset($_POST["cancel"])) {
           if(isset($_POST["listingID"])) $_SESSION['listingID']=$_POST["listingID"];
-          Header("Location:  cancelListing.php");
+          Header("Location:  clientCancelListing.php");
         }
 
     require_once("db.php");
@@ -37,7 +38,7 @@ session_start();
     $result = $mydb->query($sql);
     while($row=mysqli_fetch_array($result)){
       $Selection=$row["origin"];
-      echo "<div><table>
+      echo "<div style='margin-left: auto; display: block; margin-right: auto;width: 300px;'><table>
       <tr>
       <th>Listing Information</th>
       <th></th>
