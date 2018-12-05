@@ -97,6 +97,6 @@
     </table>
   </form>
 
-<a href="createAdmin.html">Create an account.</a>
+<a href="createAdmin.php">Create an account.</a>
 </body>
 </html>
