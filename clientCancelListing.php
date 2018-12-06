@@ -5,7 +5,7 @@
 </head>
    <link rel="stylesheet" href="stylesheet.css">
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<body>
+<body style="background-color:slategrey;">
   <img src="reynholm.jpg" height=5% width=5% />
 <ul class="nav nav-tabs">
 <li><a href="clientLanding.php">Home</a></li>
@@ -16,6 +16,7 @@
 <li><a href="clientAccountManagement.php">Manage Account</a></li>
 <li class="active"><a href="">Cancel Listing</a></li>
 </ul>
+<div style='margin-left: auto; display: block; margin-right: auto;width: 650px;'>
   <?php
     $state = "C";//cancelled
     $CDL = "N/A";//not applicable
@@ -68,6 +69,7 @@
            echo "an error occured, please try again and ensure that the data is valid.";
          }
   ?>
-
+</div>
+<p><a href="logout.php">Click here to log out</a></p>
 </body>
 </html>

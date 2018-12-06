@@ -38,8 +38,14 @@
   <style>
     .errlabel {color:red;}
   </style>
+
+  <link rel="stylesheet" href="stylesheet.css" />
+
 </head>
 <body>
+  <div style='margin-left: auto; display: block; margin-right: auto;width: 300px;'>
+NEW CLIENT INFORMATION
+
   <form method="post" action="<?php echo $_SERVER['PHP_SELF']?>"
     <label>email:
       <input type="text" name="email" value="<?php echo $email; ?>" />
@@ -88,4 +94,7 @@
     <br />
 
     <input type="submit" name="submit" value="Submit" />
+  </br>
+    <a href=who.html>Return to Account Selection</a>
+</div>
 </body>

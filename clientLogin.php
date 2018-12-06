@@ -70,7 +70,8 @@
     <img src="reynholm.jpg" height="5%" width="5%">
 </nav>
   <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" >
-    <div><table>
+    <div style='margin-left: auto; display: block; margin-right: auto;width: 300px;'>
+      <table style="border:0px white;">
       <tr>
         <td>email</td>
       </tr>
@@ -104,8 +105,10 @@
       </tr>
     </table>
   </form>
-  
 
-<a href="createClient.php">Create an account.</a></div>
+
+<a href="createClient.php">Create an account.</a>
+</br>
+<a href=who.html>Return to Account Selection</a></div>
 </body>
 </html>
