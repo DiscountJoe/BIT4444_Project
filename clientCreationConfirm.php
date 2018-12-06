@@ -39,7 +39,7 @@
                 while($row = mysqli_fetch_array($result)){
            echo "<p>A new product record has been added with information:</p></br>";
 
-               echo "<table style="background-color:white;"><thead><th>clientName</th><th>email</th><th>password</th><th>clientID</th><th>baseLocation</th></thead>";
+               echo "<table style='background-color:white;'><thead><th>clientName</th><th>email</th><th>password</th><th>clientID</th><th>baseLocation</th></thead>";
                echo "<td>".$row['clientName']."</td><td>$email</td><td>$password</td><td>".$row['clientID']."</td><td>$baseLocation</td></table>";
                $_SESSION['clientID']=$row['clientID'];
                    }
